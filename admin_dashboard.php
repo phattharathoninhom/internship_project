@@ -28,7 +28,7 @@ $result = $conn->query($sql);
         .admin-content {
             padding: 40px 20px;
             max-width: 1200px;
-            margin: 80px auto 0 auto; /* ปรับ Margin ลงมาเพื่อไม่ให้ Navbar ทับ */
+            margin: 60px auto 0 auto; /* ปรับ Margin ลงมาเพื่อไม่ให้ Navbar ทับ */
         }
         
         .header-box {

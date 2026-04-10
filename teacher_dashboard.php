@@ -31,7 +31,7 @@ $result = $conn->query($sql);
         .teacher-content {
             padding: 40px 20px;
             max-width: 1200px;
-            margin: 100px auto 0 auto;
+            margin: 60px auto 0 auto;
         }
         
         .header-box {

@@ -40,7 +40,7 @@ $data = $result->fetch_assoc();
             <span style="color:blue;"><?php echo $data['status_name']; ?></span>
         </p>
     <?php else: ?>
-        <a href="add_request.php"><button>บันทึก</button></a>
+        <a href="student_internships_req.php"><button>ยื่นคำร้องขอฝึกงาน</button></a>
     <?php endif; ?>
 
     <br><br>

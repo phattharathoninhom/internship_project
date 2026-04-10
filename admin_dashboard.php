@@ -30,7 +30,7 @@ $result = $conn->query($sql);
 </head>
 <body>
     <h2>จัดการข้อมูลการฝึกงาน (เจ้าหน้าที่คณะ)</h2>
-    <p>สวัสดีคุณ: <?php echo $_SESSION['name']; ?> | <a href="logout.php">ออกจากระบบ</a></p>
+    <p>สวัสดีคุณ: <?php echo $_SESSION['name']; ?> | <a href="index.html">ออกจากระบบ</a></p>
 
     <table>
         <thead>

@@ -34,14 +34,16 @@ $data = $result->fetch_assoc();
     <hr>
 
     <h3>Internship Detail</h3>
+    
     <?php if ($data['company_name']): ?>
         <p><strong>บริษัท:</strong> <?php echo $data['company_name']; ?></p>
         <p><strong>สถานะ:</strong>
             <span style="color:blue;"><?php echo $data['status_name']; ?></span>
         </p>
-    <?php else: ?>
-        <a href="student_internships_req.php"><button>ยื่นคำร้องขอฝึกงาน</button></a>
     <?php endif; ?>
+
+    <br>
+    <a href="student_internships_req.php"><button>ยื่นคำขอฝึกงาน</button></a>
 
     <br><br>
     <a href="index.html">ออกจากระบบ</a>

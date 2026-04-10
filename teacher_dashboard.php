@@ -66,7 +66,7 @@ $result = $conn->query($sql);
             <?php while ($row = $result->fetch_assoc()): ?>
             <tr>
                 <td><?php echo $row['student_id']; ?></td>
-                <td><?php echo $row['student_name']; ?></td>
+                <td><?php echo $row['firstName'] . " " . $row['lastName']; ?></td>
                 <td><?php echo $row['company_name'] ?? 'ยังไม่ได้ระบุ'; ?></td>
                 <td>
                     <span class="<?php echo ($row['status_code'] == '1') ? 'status-wait' : 'status-approve'; ?>">

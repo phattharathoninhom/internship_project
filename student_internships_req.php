@@ -1,4 +1,15 @@
 <?php
+session_start();
+
+// ตรวจสอบว่ามีการล็อกอินเข้ามาหรือไม่ (ป้องกันคนพิมพ์ URL เข้ามาหน้านี้โดยตรง)
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
+    header("Location: index.html");
+    exit();
+}
+
+// ดึงรหัสนิสิตจาก Session มาเก็บไว้ในตัวแปร
+$session_student_id = $_SESSION['user_id'];
+
 // =======================================================================
 // 1. ตั้งค่าการเชื่อมต่อฐานข้อมูล (Database Connection)
 // =======================================================================
@@ -25,8 +36,8 @@ $success_title = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // รับค่าจากฟอร์มและตัดช่องว่าง
-    $student_id       = isset($_POST['student_id']) ? trim($_POST['student_id']) : '';
+    // รับค่าจากฟอร์ม (รหัสนิสิตบังคับใช้จาก Session เพื่อความปลอดภัย)
+    $student_id       = $session_student_id; 
     $company_name     = isset($_POST['company_name']) ? trim($_POST['company_name']) : '';
     $company_address  = isset($_POST['company_address']) ? trim($_POST['company_address']) : '';
     $contact_person   = isset($_POST['contact_person']) ? trim($_POST['contact_person']) : '';
@@ -144,7 +155,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <strong>วันที่สิ้นสุด:</strong> <?php echo htmlspecialchars($end_date); ?><br>
             <strong>วันที่ทำรายการล่าสุด:</strong> <?php echo htmlspecialchars($request_date); ?><br>
             <br>
-            <a href="index.php" class="btn-back">⬅ กลับไปหน้าฟอร์ม</a>
+            <a href="student_dashboard.php" class="btn-back">⬅ กลับไปหน้า Dashboard</a>
         </div>
     
     <?php else: ?>
@@ -152,8 +163,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form action="" method="POST">
             
             <div class="form-group">
-                <label for="student_id">รหัสนิสิต <span style="color:red;">*</span> <small style="color:gray;">(หากเคยยื่นแล้ว ระบบจะอัปเดตข้อมูลใหม่ให้)</small></label>
-                <input type="text" id="student_id" name="student_id" required placeholder="กรอกรหัสนิสิต 11 หลัก">
+                <label for="student_id">รหัสนิสิต <small style="color:gray;">(หากเคยยื่นแล้ว ระบบจะอัปเดตข้อมูลให้)</small></label>
+                <input type="text" id="student_id" name="student_id" value="<?php echo htmlspecialchars($session_student_id); ?>" readonly style="background-color: #e9ecef; cursor: not-allowed; color: #666;">
             </div>
 
             <div class="form-group">
@@ -182,6 +193,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
 
             <button type="submit" class="btn-submit">บันทึกข้อมูล</button>
+            
+            <br><br>
+            <div style="text-align: center;">
+                <a href="student_dashboard.php" style="color: #007bff; text-decoration: none;">กลับไปหน้า Dashboard</a>
+            </div>
             
         </form>
     <?php endif; ?>

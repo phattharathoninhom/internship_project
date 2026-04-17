@@ -185,7 +185,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         <?php if ($is_submitted): ?>
             <div class="alert alert-success">
-                <h3 style="margin-top:0;">🎉 ส่งคำขอสำเร็จ!</h3>
+                <h3 style="margin-top:0;">ส่งคำขอสำเร็จ!</h3>
                 <p>ข้อมูลการฝึกงานของคุณถูกส่งเข้าระบบเรียบร้อยแล้ว</p>
                 <a href="student_dashboard.php" class="btn-submit" style="display:block; text-decoration:none;">กลับหน้า Dashboard</a>
             </div>

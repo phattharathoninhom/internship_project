@@ -1,113 +1,73 @@
 <?php
 session_start();
+require_once 'connect.php';
 
-// ตรวจสอบว่ามีการล็อกอินเข้ามาหรือไม่ (ป้องกันคนพิมพ์ URL เข้ามาหน้านี้โดยตรง)
+/**
+ * 1. ACCESS CONTROL & INITIALIZATION
+ */
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
     header("Location: index.html");
     exit();
 }
 
-// ดึงรหัสนิสิตจาก Session มาเก็บไว้ในตัวแปร
 $session_student_id = $_SESSION['user_id'];
-
-// =======================================================================
-// 1. ตั้งค่าการเชื่อมต่อฐานข้อมูล (Database Connection)
-// =======================================================================
-$host = 'localhost';
-$dbname = 'internships'; // ชื่อฐานข้อมูลของคุณ
-$username = 'root';      // ชื่อผู้ใช้งาน MySQL (ของ XAMPP ปกติคือ root)
-$password = '';          // รหัสผ่าน MySQL (ของ XAMPP ปกติให้เว้นว่างไว้)
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
-    // ตั้งค่าให้ PDO แจ้งเตือนเมื่อเกิด Error
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-} catch(PDOException $e) {
-    die("การเชื่อมต่อฐานข้อมูลล้มเหลว: " . $e->getMessage());
-}
-
-// =======================================================================
-// 2. การประมวลผลข้อมูลเมื่อกดปุ่ม Submit ฟอร์ม
-// =======================================================================
 date_default_timezone_set('Asia/Bangkok');
+
 $is_submitted = false;
 $error_message = "";
-$success_title = ""; 
+$full_name = "ไม่พบข้อมูลชื่อในระบบ";
 
+/**
+ * 2. FETCH STUDENT NAME (MySQLi Style)
+ * ดึงชื่อมาแสดงผลเฉยๆ ไม่ได้ส่งเข้าตาราง request
+ */
+$stmt_user = $conn->prepare("SELECT firstName, lastName FROM students WHERE student_id = ?");
+$stmt_user->bind_param("s", $session_student_id);
+$stmt_user->execute();
+$result_user = $stmt_user->get_result();
+
+if ($user_data = $result_user->fetch_assoc()) {
+    $full_name = $user_data['firstName'] . " " . $user_data['lastName'];
+}
+$stmt_user->close();
+
+/**
+ * 3. FORM PROCESSING (MySQLi Style)
+ */
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     
-    // รับค่าจากฟอร์ม (รหัสนิสิตบังคับใช้จาก Session เพื่อความปลอดภัย)
-    $student_id       = $session_student_id; 
-    $company_name     = isset($_POST['company_name']) ? trim($_POST['company_name']) : '';
-    $company_address  = isset($_POST['company_address']) ? trim($_POST['company_address']) : '';
-    $contact_person   = isset($_POST['contact_person']) ? trim($_POST['contact_person']) : '';
-    $start_date       = isset($_POST['start_date']) ? trim($_POST['start_date']) : '';
-    $end_date         = isset($_POST['end_date']) ? trim($_POST['end_date']) : '';
+    $company_name    = trim($_POST['company_name']);
+    $company_address = trim($_POST['company_address']);
+    $contact_person  = trim($_POST['contact_person']);
+    $start_date      = $_POST['start_date'];
+    $end_date        = $_POST['end_date'];
+    $request_date    = date("Y-m-d H:i:s");
+
+    // ใช้เครื่องหมาย ? สำหรับ MySQLi bind_param
+    $sql = "INSERT INTO internship_request 
+            (student_id, company_name, company_address, contact_person, start_date, end_date, request_date, status_code) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, 1)";
     
-    // วันที่ยื่นคำร้อง (สร้างอัตโนมัติ)
-    $request_date     = date("Y-m-d H:i:s");
+    if ($stmt = $conn->prepare($sql)) {
+        // s = string, i = integer (ลำดับ: sid, cname, caddr, cperson, sdate, edate, rdate)
+        $stmt->bind_param("sssssss", 
+            $session_student_id, 
+            $company_name, 
+            $company_address, 
+            $contact_person, 
+            $start_date, 
+            $end_date, 
+            $request_date
+        );
 
-    try {
-        // --- ตรวจสอบว่ามีคำร้องของนิสิตคนนี้อยู่แล้วหรือไม่ ---
-        $check_sql = "SELECT request_id FROM internship_request WHERE student_id = :student_id LIMIT 1";
-        $stmt_check = $pdo->prepare($check_sql);
-        $stmt_check->execute([':student_id' => $student_id]);
-        $existing_request = $stmt_check->fetch(PDO::FETCH_ASSOC);
-
-        if ($existing_request) {
-            // ---> ถ้ามีข้อมูลอยู่แล้ว : อัปเดตข้อมูลเดิม (UPDATE) <---
-            $update_sql = "UPDATE internship_request 
-                           SET company_name = :company_name, 
-                               company_address = :company_address, 
-                               contact_person = :contact_person, 
-                               start_date = :start_date, 
-                               end_date = :end_date, 
-                               request_date = :request_date
-                           WHERE student_id = :student_id";
-            
-            $stmt_update = $pdo->prepare($update_sql);
-            $stmt_update->execute([
-                ':company_name'    => $company_name,
-                ':company_address' => $company_address,
-                ':contact_person'  => $contact_person,
-                ':start_date'      => $start_date,
-                ':end_date'        => $end_date,
-                ':request_date'    => $request_date,
-                ':student_id'      => $student_id
-            ]);
-            
-            $success_title = "อัปเดตข้อมูลคำร้องสำเร็จ!";
-            
+        if ($stmt->execute()) {
+            $is_submitted = true;
         } else {
-            // ---> ถ้ายังไม่มีข้อมูล : บันทึกข้อมูลใหม่ (INSERT) <---
-            $insert_sql = "INSERT INTO internship_request 
-                           (student_id, company_name, company_address, contact_person, start_date, end_date, request_date) 
-                           VALUES 
-                           (:student_id, :company_name, :company_address, :contact_person, :start_date, :end_date, :request_date)";
-            
-            $stmt_insert = $pdo->prepare($insert_sql);
-            $stmt_insert->execute([
-                ':student_id'      => $student_id,
-                ':company_name'    => $company_name,
-                ':company_address' => $company_address,
-                ':contact_person'  => $contact_person,
-                ':start_date'      => $start_date,
-                ':end_date'        => $end_date,
-                ':request_date'    => $request_date
-            ]);
-
-            $success_title = "บันทึกคำร้องใหม่สำเร็จ!";
+            $error_message = "เกิดข้อผิดพลาดในการบันทึก: " . $stmt->error;
         }
-
-        $is_submitted = true;
-
-    } catch(PDOException $e) {
-        // ดักจับ Error กรณีรหัสนิสิตไม่มีในตาราง students (Foreign Key Error)
-        if ($e->getCode() == 23000) {
-            $error_message = "เกิดข้อผิดพลาด: รหัสนิสิต '$student_id' ไม่มีในระบบฐานข้อมูลนักศึกษา กรุณาตรวจสอบอีกครั้ง";
-        } else {
-            $error_message = "เกิดข้อผิดพลาดในการทำงาน: " . $e->getMessage();
-        }
+        $stmt->close();
+    } else {
+        $error_message = "เกิดข้อผิดพลาดในการเตรียมคำสั่ง SQL: " . $conn->error;
     }
 }
 ?>
@@ -117,92 +77,178 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ระบบยื่นคำร้องขอฝึกงาน</title>
+    <title>ยื่นคำขอฝึกงาน | SWU Internship</title>
+    
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
+    
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6; margin: 0; padding: 20px; }
-        .container { max-width: 600px; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); margin: auto; }
-        h2 { text-align: center; color: #333; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
-        input[type="text"], input[type="date"], textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
-        textarea { resize: vertical; height: 100px; }
-        .btn-submit { background-color: #28a745; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; font-weight: bold; }
-        .btn-submit:hover { background-color: #218838; }
-        .success-box { background-color: #d4edda; border-color: #c3e6cb; color: #155724; padding: 20px; border-radius: 8px; margin-bottom: 20px; line-height: 1.6; }
-        .error-box { background-color: #f8d7da; border-color: #f5c6cb; color: #721c24; padding: 15px; border-radius: 8px; margin-bottom: 20px; line-height: 1.6; }
-        .btn-back { display: inline-block; margin-top: 15px; padding: 10px 15px; background-color: #007bff; color: white; text-decoration: none; border-radius: 4px; font-weight: bold; text-align: center;}
-        .btn-back:hover { background-color: #0056b3; }
+        .req-content {
+            padding: 40px 20px;
+            max-width: 700px;
+            margin: 80px auto 0 auto;
+        }
+        
+        .form-card {
+            background: white;
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-top: 6px solid #9e1a32;
+        }
+
+        .form-header {
+            margin-bottom: 25px;
+            border-bottom: 2px solid #f0f0f0;
+            padding-bottom: 15px;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        
+        label { 
+            display: block; 
+            margin-bottom: 8px; 
+            font-weight: bold; 
+            color: #444;
+            font-size: 0.95em;
+        }
+
+        input[type="text"], 
+        input[type="date"], 
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: 'Sarabun', sans-serif;
+            font-size: 1em;
+            transition: 0.3s;
+        }
+
+        input:focus, textarea:focus {
+            border-color: #9e1a32;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(158, 26, 50, 0.1);
+        }
+
+        .btn-submit {
+            background-color: #9e1a32;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: 0.3s;
+            margin-top: 10px;
+        }
+
+        .btn-submit:hover {
+            background-color: #7a1426;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(158, 26, 50, 0.3);
+        }
+
+        .btn-secondary {
+            display: inline-block;
+            margin-top: 15px;
+            color: #666;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+
+        .alert {
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .alert-success { background: #e8f5e9; color: #2e7d32; border: 1px solid #c8e6c9; }
+        .alert-error { background: #ffebee; color: #c62828; border: 1px solid #ffcdd2; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    
-    <?php if ($error_message): ?>
-        <div class="error-box">
-            <strong style="font-size: 18px;">❌ ไม่สามารถบันทึกข้อมูลได้</strong><br>
-            <?php echo $error_message; ?>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="student_dashboard.php" class="nav-logo">SWU Internship</a>
+            <ul class="nav-menu">
+                <li><a href="student_dashboard.php" style="color: #9e1a32; font-weight: bold; text-decoration: none;">หน้าหลัก</a></li>
+            </ul>
         </div>
-    <?php endif; ?>
+    </nav>
 
-    <?php if ($is_submitted): ?>
-        <div class="success-box">
-            <h3 style="margin-top: 0;">✅ <?php echo $success_title; ?></h3>
-            <strong>รหัสนิสิต:</strong> <?php echo htmlspecialchars($student_id); ?><br>
-            <strong>ชื่อสถานประกอบการ:</strong> <?php echo htmlspecialchars($company_name); ?><br>
-            <strong>ผู้ติดต่อ/พี่เลี้ยง:</strong> <?php echo htmlspecialchars($contact_person); ?><br>
-            <strong>วันที่เริ่มต้น:</strong> <?php echo htmlspecialchars($start_date); ?><br>
-            <strong>วันที่สิ้นสุด:</strong> <?php echo htmlspecialchars($end_date); ?><br>
-            <strong>วันที่ทำรายการล่าสุด:</strong> <?php echo htmlspecialchars($request_date); ?><br>
-            <br>
-            <a href="student_dashboard.php" class="btn-back">⬅ กลับไปหน้า Dashboard</a>
-        </div>
-    
-    <?php else: ?>
-        <h2>ยื่น/แก้ไข คำร้องขอฝึกงาน</h2>
-        <form action="" method="POST">
-            
-            <div class="form-group">
-                <label for="student_id">รหัสนิสิต <small style="color:gray;">(หากเคยยื่นแล้ว ระบบจะอัปเดตข้อมูลให้)</small></label>
-                <input type="text" id="student_id" name="student_id" value="<?php echo htmlspecialchars($session_student_id); ?>" readonly style="background-color: #e9ecef; cursor: not-allowed; color: #666;">
+    <div class="req-content">
+        
+        <?php if ($is_submitted): ?>
+            <div class="alert alert-success">
+                <h3 style="margin-top:0;">🎉 ส่งคำขอสำเร็จ!</h3>
+                <p>ข้อมูลการฝึกงานของคุณถูกส่งเข้าระบบเรียบร้อยแล้ว</p>
+                <a href="student_dashboard.php" class="btn-submit" style="display:block; text-decoration:none;">กลับหน้า Dashboard</a>
             </div>
 
-            <div class="form-group">
-                <label for="company_name">ชื่อสถานประกอบการ <span style="color:red;">*</span></label>
-                <input type="text" id="company_name" name="company_name" required placeholder="เช่น บริษัท เอบีซี จำกัด">
+        <?php else: ?>
+            <div class="form-card">
+                <div class="form-header">
+                    <h2 style="color: #9e1a32; margin: 0;">ยื่นคำขอฝึกงานใหม่</h2>
+                    <p style="color: #666; margin: 5px 0 0 0;">กรอกข้อมูลสถานประกอบการที่คุณต้องการเข้าฝึกงาน</p>
+                </div>
+
+                <?php if ($error_message): ?>
+                    <div class="alert alert-error"><?= $error_message; ?></div>
+                <?php endif; ?>
+
+                <form action="" method="POST">
+                    <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 15px;">
+                        <div class="form-group">
+                            <label>รหัสนิสิต</label>
+                            <input type="text" value="<?= htmlspecialchars($session_student_id); ?>" readonly style="background: #f5f5f5; color: #888;">
+                        </div>
+                        <div class="form-group">
+                            <label>ชื่อ-นามสกุล</label>
+                            <input type="text" value="<?= htmlspecialchars($full_name); ?>" readonly style="background: #f5f5f5; color: #888;">
+                        </div>
+                    </div>
+
+                    <hr style="border: 0; border-top: 1px solid #eee; margin: 10px 0 25px 0;">
+
+                    <div class="form-group">
+                        <label>ชื่อสถานประกอบการ <span style="color:red;">*</span></label>
+                        <input type="text" name="company_name" required placeholder="เช่น บริษัท เอบีซี จำกัด">
+                    </div>
+
+                    <div class="form-group">
+                        <label>ที่อยู่สถานประกอบการ <span style="color:red;">*</span></label>
+                        <textarea name="company_address" required rows="3" placeholder="บ้านเลขที่, ถนน, แขวง/ตำบล, เขต/อำเภอ..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>ชื่อผู้ติดต่อ / พี่เลี้ยง <span style="color:red;">*</span></label>
+                        <input type="text" name="contact_person" required placeholder="ชื่อ-นามสกุล (แนะนำให้ระบุเบอร์โทรศัพท์)">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div class="form-group">
+                            <label>วันที่เริ่มต้น <span style="color:red;">*</span></label>
+                            <input type="date" name="start_date" required>
+                        </div>
+                        <div class="form-group">
+                            <label>วันที่สิ้นสุด <span style="color:red;">*</span></label>
+                            <input type="date" name="end_date" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">ส่งข้อมูลคำขอ</button>
+                    
+                    <div style="text-align: center;">
+                        <a href="student_dashboard.php" class="btn-secondary">ยกเลิกและกลับหน้าหลัก</a>
+                    </div>
+                </form>
             </div>
-
-            <div class="form-group">
-                <label for="company_address">ที่อยู่สถานประกอบการ <span style="color:red;">*</span></label>
-                <textarea id="company_address" name="company_address" required placeholder="กรอกที่อยู่แบบครบถ้วน"></textarea>
-            </div>
-
-            <div class="form-group">
-                <label for="contact_person">ชื่อผู้ติดต่อ / พี่เลี้ยง <span style="color:red;">*</span></label>
-                <input type="text" id="contact_person" name="contact_person" required placeholder="ชื่อ-นามสกุล">
-            </div>
-
-            <div class="form-group">
-                <label for="start_date">วันที่เริ่มต้นฝึกงาน <span style="color:red;">*</span></label>
-                <input type="date" id="start_date" name="start_date" required>
-            </div>
-
-            <div class="form-group">
-                <label for="end_date">วันที่สิ้นสุดการฝึกงาน <span style="color:red;">*</span></label>
-                <input type="date" id="end_date" name="end_date" required>
-            </div>
-
-            <button type="submit" class="btn-submit">บันทึกข้อมูล</button>
-            
-            <br><br>
-            <div style="text-align: center;">
-                <a href="student_dashboard.php" style="color: #007bff; text-decoration: none;">กลับไปหน้า Dashboard</a>
-            </div>
-            
-        </form>
-    <?php endif; ?>
-
-</div>
-
+        <?php endif; ?>
+    </div>
 </body>
 </html>

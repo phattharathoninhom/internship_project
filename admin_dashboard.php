@@ -12,7 +12,7 @@ $sql = "SELECT r.*, s.firstName, s.lastName, st.status_name
         FROM internship_request r
         JOIN students s ON r.student_id = s.student_id
         JOIN status_list st ON r.status_code = st.status_code
-        ORDER BY r.request_id ASC";
+        ORDER BY r.request_id DESC";
 $result = $conn->query($sql);
 ?>
 

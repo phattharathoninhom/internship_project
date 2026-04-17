@@ -117,7 +117,7 @@ $result = $conn->query($sql);
                                         </select>
                                     </form>
                                 <?php else: ?>
-                                    <span style="color: #2e7d32; font-size: 0.9em;">✓ อนุมัติแล้ว</span>
+                                    <span style="color: #2e7d32; font-size: 0.9em;">อนุมัติแล้ว</span>
                                 <?php endif; ?>
                             </td>
                             <td>

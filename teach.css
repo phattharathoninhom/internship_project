@@ -1,4 +1,4 @@
-/* การตั้งค่า Font และ Variables */
+
 :root {
     --swu-red: #9e1b32;
     --swu-dark: #7a1526;
@@ -14,7 +14,7 @@ body {
     background-color: var(--light-gray);
 }
 
-/* --- Navigation Bar Style --- */
+
 .navbar {
     background-color: var(--white);
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
@@ -63,7 +63,7 @@ body {
     color: var(--swu-red);
 }
 
-/* Dropdown Menu */
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -89,13 +89,13 @@ body {
     display: block;
 }
 
-/* --- Login Form Style --- */
+
 .main-content {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding-top: 30px; /* ชดเชยความสูง navbar */
+    padding-top: 150px; /* ชดเชยความสูง navbar */
 }
 
 .list-container {
@@ -120,7 +120,7 @@ body {
     color: #888;
 }
 
-/* --- 4. Teacher List & Items --- */
+
 .teacher-list {
     display: flex;
     flex-direction: column;
@@ -144,7 +144,7 @@ body {
     border-color: var(--swu-red);
 }
 
-/* ส่วนข้อมูลหลัก (ชื่อ/ตำแหน่ง) */
+
 .teacher-main-info {
     display: flex;
     align-items: center;
@@ -163,7 +163,7 @@ body {
     color: #888;
 }
 
-/* ส่วนข้อมูลรอง (สังกัด/เชี่ยวชาญ) */
+
 .teacher-sub-info {
     display: flex;
     gap: 2.5rem;
@@ -171,16 +171,17 @@ body {
     padding: 0 1rem;
 }
 
+
 .info-box {
-    display: flex;
-    flex-direction: column;
+    display: flex;       
+    align-items: center; 
+    width: 200px;        
+    margin-right: 20px;  
 }
 
 .info-box label {
-    font-size: 0.75rem;
-    color: #aaa;
-    text-transform: uppercase;
-    margin-bottom: 4px;
+    width: 25px;         
+    flex-shrink: 0;      
 }
 
 .info-box span {
@@ -228,7 +229,7 @@ body {
     color: var(--white);
 }
 
-/* --- 5. Responsive Design --- */
+
 @media (max-width: 900px) {
     .teacher-item {
         flex-direction: column;

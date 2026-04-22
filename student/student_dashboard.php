@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'connect.php';
+require_once('../includes/connect.php');
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
     header("Location: index.html");
@@ -29,7 +29,7 @@ $result_req = $conn->query($sql_req);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard | SWU Internship</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/internship_project/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         .student-content { padding: 40px 20px; max-width: 900px; margin: 80px auto 0 auto; }
@@ -71,14 +71,7 @@ $result_req = $conn->query($sql_req);
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="student_dashboard.php" class="nav-logo">SWU Internship</a>
-            <ul class="nav-menu">
-                <li><a href="logout.php" style="color: #9e1a32; font-weight: bold; text-decoration: none;">ออกจากระบบ</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include ('../includes/navbar.php'); ?>
 
     <div class="student-content">
         <div class="profile-card">

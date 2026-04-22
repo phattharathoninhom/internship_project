@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'connect.php';
+require_once('../includes/connect.php');
 
 // แก้ตรงนี้: เช็คว่าต้อง login แล้ว และเป็น admin "หรือ" teacher ก็ได้
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['role']) && 

@@ -63,6 +63,21 @@ body {
     color: var(--swu-red);
 }
 
+.user-display {
+    display: flex;
+    align-items: center;
+    padding: 0 15px; /* ระยะห่างซ้าย-ขวาให้เท่ากับเมนูอื่น */
+}
+
+
+.user-display span {
+    color: #0e0e0e;
+    font-weight: bold;
+    font-size: 1em;
+    white-space: nowrap;
+    line-height: normal; 
+}
+
 
 .dropdown-content {
     display: none;

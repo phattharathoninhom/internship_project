@@ -1,10 +1,10 @@
 <?php
 session_start();
-require_once 'connect.php';
+require_once('../includes/connect.php');
 
 // เช็คสิทธิ์ (ต้องเป็น admin เท่านั้น)
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: index.html");
+    header("Location: /internship_project/index.html");
     exit();
 }
 
@@ -22,7 +22,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard | SWU Internship</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/internship_project/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         .admin-content {
@@ -118,14 +118,7 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">SWU Internship Admin</a>
-            <ul class="nav-menu">
-                <li><a href="logout.php" class="logout-btn">ออกจากระบบ</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include ('../includes/navbar.php'); ?>
 
     <div class="admin-content">
         <div class="header-box">

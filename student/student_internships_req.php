@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'connect.php';
+require_once('../includes/connect.php');
 
 /**
  * 1. ACCESS CONTROL & INITIALIZATION
@@ -79,7 +79,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ยื่นคำขอฝึกงาน | SWU Internship</title>
     
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/internship_project/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -172,14 +172,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="student_dashboard.php" class="nav-logo">SWU Internship</a>
-            <ul class="nav-menu">
-                <li><a href="student_dashboard.php" style="color: #9e1a32; font-weight: bold; text-decoration: none;">หน้าหลัก</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include('../includes/navbar.php'); ?>
 
     <div class="req-content">
         
@@ -244,7 +237,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <button type="submit" class="btn-submit">ส่งข้อมูลคำขอ</button>
                     
                     <div style="text-align: center;">
-                        <a href="student_dashboard.php" class="btn-secondary">ยกเลิกและกลับหน้าหลัก</a>
+                        <a href="/internship_project/student/student_dashboard.php" class="btn-secondary">ยกเลิกและกลับหน้าหลัก</a>
                     </div>
                 </form>
             </div>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once 'connect.php';
+require_once('../includes/connect.php');
 
 // ตรวจสอบ Login (role ของอาจารย์คือ 'teacher')
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'teacher') {
@@ -26,7 +26,7 @@ $result = $conn->query($sql);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard | SWU Internship</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/internship_project/assets/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         .teacher-content { padding: 40px 20px; max-width: 1200px; margin: 60px auto 0 auto; }
@@ -54,14 +54,7 @@ $result = $conn->query($sql);
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="teacher_dashboard.php" class="nav-logo">SWU Internship Teacher</a>
-            <ul class="nav-menu">
-                <li><a href="logout.php" class="logout-btn">ออกจากระบบ</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include('../includes/navbar.php'); ?>
 
     <div class="teacher-content">
         <div class="header-box">
@@ -82,7 +75,7 @@ $result = $conn->query($sql);
                         <th>ชื่อ-นามสกุล</th>
                         <th>บริษัทที่สมัคร</th>
                         <th>สถานะ</th>
-                        <th>จัดการสิทธิ์</th>
+                        <th>จัดการ</th>
                         <th>รายละเอียด</th>
                     </tr>
                 </thead>

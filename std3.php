@@ -1,34 +1,15 @@
-<!DOCTYPE html>
+<?php session_start(); ?><!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ข้อมูลนิสิตปี 1 - SWU Internship</title>
-    <link rel="stylesheet" href="std.css">
+    <link rel="stylesheet" href="assets/css/std.css">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">SWU Internship</a>
-            <ul class="nav-menu">
-                <li><a href="index.html">หน้าแรก</a></li>
-                <li><a href="showcase.html">Showcase</a></li>
-                <li><a href="notify.html">ประชาสัมพันธ์</a></li>
-                <li class="dropdown">
-                    <a href="javascript:void(0)" class="dropbtn">ข้อมูลนิสิต</a>
-                    <div class="dropdown-content">
-                        <a href="std1.html">นิสิตชั้นปีที่ 1</a>
-                        <a href="std2.html">นิสิตชั้นปีที่ 2</a>
-                        <a href="std3.html">นิสิตชั้นปีที่ 3</a>
-                        <a href="std4.html">นิสิตชั้นปีที่ 4</a>
-                    </div>
-                </li>
-                <li><a href="teach.html">ข้อมูลอาจารย์</a></li>
-            </ul>
-        </div>
-    </nav>
+    <?php include 'includes/navbar.php'; ?>
 
     <div class="main-content">
         <div class="student-list-container">

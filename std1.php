@@ -17,6 +17,7 @@
         <div class="student-list-container">
             <div class="list-header">
                 <h2>รายชื่อนิสิตชั้นปีที่ 1</h2>
+                <p>ข้อมูลรายชื่อนิสิตสาขาวิชาสารสนเทศศึกษา มหาวิทยาลัยศรีนครินทรวิโรฒ</p>
             </div>
 
             <div class="table-wrapper">

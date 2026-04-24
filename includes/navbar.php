@@ -1,44 +1,52 @@
+<?php
+// 1. เช็คชื่อไฟล์ปัจจุบัน
+$current_page = basename($_SERVER['PHP_SELF']);
+$std_pages = ['std1.php', 'std2.php', 'std3.php', 'std4.php']; 
+
+// 2. กำหนด Base Path ของโปรเจกต์ (เพื่อให้กดจากโฟลเดอร์ไหนก็เด้งไปหน้าหลักได้)
+$base_url = "/internship_project/";
+?>
+
 <nav class="navbar">
     <div class="nav-container">
-        <a href="/internship_project/index.php" class="nav-logo">Information Studies | SWU</a>
+        <a href="<?php echo $base_url; ?>index.php" class="nav-logo">Information Studies | SWU</a>
         
         <ul class="nav-menu">
-            <li><a href="/internship_project/index.php">หน้าแรก</a></li>
-            <li><a href="/internship_project/showcase.php">Showcase</a></li>
+            <li><a href="<?php echo $base_url; ?>index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">หน้าแรก</a></li>
+            
+            <li><a href="<?php echo $base_url; ?>showcase.php" class="<?php echo ($current_page == 'showcase.php') ? 'active' : ''; ?>">Showcase</a></li>
             
             <li class="dropdown">
-                <a href="javascript:void(0)" class="dropbtn">ข้อมูลนิสิต</a>
+                <a href="javascript:void(0)" class="dropbtn <?php echo (in_array($current_page, $std_pages)) ? 'active' : ''; ?>">ข้อมูลนิสิต</a>
                 <div class="dropdown-content">
-                    <a href="/internship_project/std1.php">นิสิตชั้นปีที่ 1</a>
-                    <a href="/internship_project/std2.php">นิสิตชั้นปีที่ 2</a>
-                    <a href="/internship_project/std3.php">นิสิตชั้นปีที่ 3</a>
-                    <a href="/internship_project/std4.php">นิสิตชั้นปีที่ 4</a>
+                    <a href="<?php echo $base_url; ?>std1.php">นิสิตชั้นปีที่ 1</a>
+                    <a href="<?php echo $base_url; ?>std2.php">นิสิตชั้นปีที่ 2</a>
+                    <a href="<?php echo $base_url; ?>std3.php">นิสิตชั้นปีที่ 3</a>
+                    <a href="<?php echo $base_url; ?>std4.php">นิสิตชั้นปีที่ 4</a>
                 </div>
             </li>
             
-            <li><a href="/internship_project/teach.php">ข้อมูลอาจารย์</a></li>
+            <li><a href="<?php echo $base_url; ?>teach.php" class="<?php echo ($current_page == 'teach.php') ? 'active' : ''; ?>">ข้อมูลอาจารย์</a></li>
 
             <?php if(isset($_SESSION['user_id'])): ?>
                 <?php 
-                    // เช็คสิทธิ์เพื่อส่งไปหน้า Dashboard ที่ถูกต้อง
                     $role = isset($_SESSION['role']) ? $_SESSION['role'] : 'student'; 
-                    
                     if ($role == 'admin') {
-                        $dash_link = "/internship_project/admin/admin_dashboard.php";
+                        $dash_link = $base_url . "admin/admin_dashboard.php";
                     } elseif ($role == 'teacher') {
-                        $dash_link = "/internship_project/teacher/teacher_dashboard.php";
+                        $dash_link = $base_url . "teacher/teacher_dashboard.php";
                     } else {
-                        $dash_link = "/internship_project/student/student_dashboard.php";
+                        $dash_link = $base_url . "student/student_dashboard.php";
                     }
                 ?>
                 <li class="user-display">
-                    <a href="<?php echo $dash_link; ?>" style="text-decoration: none; color: #0e0e0e; font-weight: bold;">
+                    <a href="<?php echo $dash_link; ?>" class="user-name">
                         <i class="fa fa-user-circle"></i> <?php echo $_SESSION['name'];?>
                     </a>
                 </li>
-                <li><a href="/internship_project/logout.php" class="login-link logout-style">ออกจากระบบ</a></li>
+                <li><a href="<?php echo $base_url; ?>logout.php" class="logout-style">ออกจากระบบ</a></li>
             <?php else: ?>
-                <li><a href="/internship_project/login.php" class="login-link">เข้าสู่ระบบ</a></li>
+                <li><a href="<?php echo $base_url; ?>login.php" class="login-link">เข้าสู่ระบบ</a></li>
             <?php endif; ?>
         </ul>
     </div>

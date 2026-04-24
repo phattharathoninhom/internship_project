@@ -53,12 +53,11 @@ body {
 
 .nav-menu a {
     display: block;
-    padding: 1rem 1.2rem;
+    padding: 1rem 1.2rem; /* ระยะห่างซ้ายขวาคือ 1.2rem */
     color: var(--swu-gray);
     text-decoration: none;
-    /* เพิ่ม !important เพื่อป้องกัน CSS หน้าอื่นมาขัดขวาง */
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important; 
     position: relative;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
 }
 
 .nav-menu a:hover {
@@ -69,17 +68,33 @@ body {
 .nav-menu a::after {
     content: '';
     position: absolute;
-    bottom: 8px;
-    left: 50%;
+    bottom: 5px;
+    left: 50%; /* เริ่มจากตรงกลาง */
     width: 0;
-    height: 2px;
+    height: 3px;
     background: var(--swu-red);
-    transition: width 0.3s ease;
-    transform: translateX(-50%);
+    transition: all 0.3s ease;
+    transform: translateX(-50%); /* ดึงกลับมาให้ตรงกลางเป๊ะ */
+    border-radius: 2px;
 }
 
 .nav-menu a:hover::after {
-    width: 50%; /* ขีดเส้นใต้จะเด้งออกมาจากตรงกลาง */
+    width: 60%; 
+}
+
+.nav-menu a.active {
+    color: var(--swu-red) !important;
+    font-weight: bold;
+}
+
+.nav-menu a.active::after {
+    width: 60% !important;
+    background-color: var(--swu-red);
+}
+
+.user-name {
+    color: #0e0e0e !important;
+    font-weight: bold !important;
 }
 
 .user-display {
@@ -108,6 +123,11 @@ body {
     z-index: 1;
 }
 
+.dropbtn {
+    cursor: pointer;
+}
+
+
 .dropdown-content a {
     color: var(--swu-gray);
     padding: 12px 16px;
@@ -123,13 +143,12 @@ body {
     display: block;
 }
 
-
 .main-content {
     display: flex;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: top 30px;; 
+    align-items: center; 
+    min-height: 100vh;  
+    padding-top: 30px;   
 }
 
 .login-container {

@@ -4,7 +4,7 @@ require_once('../includes/connect.php');
 
 // ตรวจสอบ Login (role ของอาจารย์คือ 'teacher')
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'teacher') {
-    header("Location: index.html");
+    header("Location: /internship_project/index.php");
     exit();
 }
 

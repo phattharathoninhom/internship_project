@@ -94,11 +94,11 @@ body {
 .student-list-container {
     max-width: 1100px;
     width: 95%;
-    margin: 2rem auto;
+    margin: 0 auto 2rem auto;
     background-color: var(--white);
     padding: 2.5rem;
-    border-radius: 12px; /* ล้อกับหน้า Login */
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.0.5)
 }
 
 .list-header {
@@ -194,7 +194,7 @@ body {
 
 
 .main-content {
-    min-height: 100vh;
-    padding-top: 100px;
-    padding-bottom: 50px;
+    display: block;
+    paddin-top: 100px;
+    min-height: auto;
 }

@@ -4,7 +4,7 @@ require_once('../includes/connect.php');
 
 // เช็คสิทธิ์ (ต้องเป็น admin เท่านั้น)
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
-    header("Location: /internship_project/index.html");
+    header("Location: /internship_project/index.php");
     exit();
 }
 

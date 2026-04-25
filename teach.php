@@ -16,7 +16,7 @@
 
     <div class="main-content">
         <div class="container">
-            <header class="page-header">
+            <div class="page-header">
                 <h2>รายชื่ออาจารย์ที่ปรึกษา</h2>
                 <p>คณะมนุษยศาสตร์ หลักสูตรศิลปศาสตรบัณฑิต สาขาวิชาสารสนเทศศึกษา มหาวิทยาลัยศรีนครินทรวิโรฒ</p>
             </div>

@@ -13,7 +13,7 @@
 
     <?php include 'includes/navbar.php'; ?>
 
-    <div class="main-content showcase-content">
+    <div class="main-content">
         <div class="container">
             
             <div class="page-header">

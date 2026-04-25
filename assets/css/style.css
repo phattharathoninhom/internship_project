@@ -14,21 +14,7 @@ body {
     background-color: var(--light-gray);
 }
 
-/* --- Layout สำหรับทุกหน้า (index, showcase, std, admin) --- */
-.main-content {
-    display: block;             /* เปลี่ยนจาก flex เป็น block เพื่อให้เนื้อหาไหลลงปกติ */
-    min-height: 100vh;
-    padding-top: 100px;         /* ดันเนื้อหาลงมา 100px เพื่อหลบ Navbar ให้พ้นหัวข้อ */
-    box-sizing: border-box;
-}
 
-/* --- เฉพาะหน้า Login (จัดให้กึ่งกลางหน้าจอ) --- */
-.login-page .main-content {
-    display: flex;              
-    justify-content: center;    
-    align-items: center;        
-    padding-top: 0;             
-}
 
 /* --- Navbar Style (ปรับขีดเส้นใต้ให้ตรงกึ่งกลาง) --- */
 .navbar {
@@ -38,6 +24,16 @@ body {
     top: 0;
     width: 100%;
     z-index: 1000;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between; /* แยกโลโก้ไว้ซ้าย เมนูไว้ขวา */
+    align-items: center;
+    max-width: 1200px;             /* คุมความกว้างเนื้อหา */
+    margin: 0 auto;                /* จัดกึ่งกลางหน้าจอ */
+    padding: 0 2rem;               /* กันกระแทกขอบจอ */
+    height: 70px;                  /* กำหนดความสูงที่แน่นอนให้ Navbar */
 }
 
 .nav-logo {
@@ -50,8 +46,10 @@ body {
 .nav-menu {
     list-style: none;
     display: flex;
+    align-items: center;           /* จัดให้อยู่กลางแนวตั้ง */
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
 .nav-menu li {
@@ -70,7 +68,7 @@ body {
     color: var(--swu-red);
 }
 
-.nav-menu a::after {
+.nav-menu > li > a::after {
     content: '';
     position: absolute;
     bottom: 5px;
@@ -83,54 +81,73 @@ body {
     border-radius: 2px;
 }
 
-.nav-menu a.active::after, 
-.nav-menu a:hover::after {
+.nav-menu > li > a.active::after, 
+.nav-menu > li > a:hover::after {
     width: 60%;
 }
 
-/* --- Login Container --- */
-.login-container {
-    background: white;
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.07);
-    width: 100%;
-    max-width: 380px; 
-    text-align: center;
+.dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
 }
 
-.logo {
-    width: 100px;
-    margin-bottom: 1rem;
-}
-
-.form-group {
-    text-align: left;
-    margin-top: 1.5rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: var(--swu-gray);
-}
-
-input[type="text"], input[type="password"] {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-sizing: border-box;
-}
-
-.login-btn {
-    width: 100%;
-    padding: 12px;
-    margin-top: 2rem;
-    background: var(--swu-red);
-    color: white;
-    border: none;
-    border-radius: 8px;
+.dropbtn {
     cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-family: inherit; /* ให้ใช้ Font Sarabun ตาม Body */
+}
+
+.dropdown-content {
+    display: none;                /* ซ่อนไว้ก่อน */
+    position: absolute;
+    top: 100%;                    /* ให้แสดงต่อลงมาจาก Navbar */
+    left: 0;
+    background-color: var(--white);
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    border-radius: 0 0 8px 8px;
+    overflow: hidden;
+    z-index: 1001;
+}
+
+.dropdown-content a {
+    position: relative; /* สำคัญมาก: เพื่อให้ขีดแดงมาเกาะที่ตัวอักษรของแต่ละปี */
+    display: block;
+}
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+    color: var(--swu-red);
+}
+
+.dropdown-content a::after {
+    content: '';
+    position: absolute;
+    bottom: 5px;        /* ระยะห่างจากขอบล่างของปีนั้นๆ */
+    left: 50%;
+    width: 0;           /* เริ่มต้นให้ยาว 0 (ซ่อนไว้) */
+    height: 2px;        /* ความหนาเส้น (บางกว่าเมนูหลักนิดนึงจะสวย) */
+    background: var(--swu-red);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+.dropdown-content a:hover::after {
+    width: 60%;         /* ให้ยาวออกมา 60% ของความกว้างตัวอักษร */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;               /* แสดงเมื่อเอาเมาส์ไปชี้ */
+}
+
+.user-display i {
+    margin-right: 5px;
+}
+
+.user-name.active {
+    color: var(--swu-red) !important;
     font-weight: bold;
 }

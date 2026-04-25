@@ -1,0 +1,70 @@
+:root {
+    --swu-red: #9e1b32;
+    --swu-dark: #7a1526;
+    --swu-gray: #58595b;
+    --light-gray: #f8f9fa;
+    --white: #ffffff;
+}
+
+body {
+    font-family: 'Sarabun', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-gray);
+}
+
+/* --- Login Container --- */
+.main-content {
+    padding-top: 100px; /* เว้นระยะห่างด้านบนให้พ้นจาก Navbar */
+    min-height: 100vh;  /* ให้มีความสูงอย่างน้อยเท่ากับหน้าจอ */
+    display: flex;      /* ใช้ Flexbox เพื่อจัดให้กล่อง Login อยู่กึ่งกลาง */
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.login-container {
+    background: white;
+    padding: 2.5rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.07);
+    width: 100%;
+    max-width: 380px; 
+    text-align: center;
+}
+
+.logo {
+    width: 100px;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    text-align: left;
+    margin-top: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--swu-gray);
+}
+
+input[type="text"], input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.login-btn {
+    width: 100%;
+    padding: 12px;
+    margin-top: 2rem;
+    background: var(--swu-red);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}

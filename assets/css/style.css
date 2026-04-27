@@ -151,3 +151,69 @@ body {
     color: var(--swu-red) !important;
     font-weight: bold;
 }
+
+.main-footer {
+    background-color: #2c2c2c; /* สีเทาเข้มขรึมๆ แบบคณะมนุษย์ */
+    color: #efefef;
+    padding: 40px 0 20px 0;
+    margin-top: 80px;
+    font-family: 'Sarabun', sans-serif;
+    border-top: 4px solid #9e1a32; /* เส้นสีแดงเลือดหมู มศว */
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 0.8fr;
+    gap: 30px;
+    padding: 0 25px;
+}
+
+.dept-title {
+    color: #fff;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.footer-info p, .footer-contact p {
+    font-size: 0.9em;
+    margin: 5px 0;
+    color: #ccc;
+}
+
+.footer-content h4 {
+    color: #ff8c00; /* สีส้ม (เฉดรองของคณะมนุษย์ หรือใช้เป็นสี Highlight) */
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+/* ถ้าอยากคุมโทน มศว ให้เปลี่ยนสีส้มข้างบนเป็นสีแดง #9e1a32 */
+
+.social-icons a {
+    color: #fff;
+    background: #444;
+    width: 35px;
+    height: 35px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    margin-right: 10px;
+    transition: 0.3s;
+    text-decoration: none;
+}
+
+.social-icons a:hover {
+    background: #9e1a32;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #444;
+    font-size: 0.8em;
+    color: #888;
+}

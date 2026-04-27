@@ -17,7 +17,7 @@
     <div class="main-content">
         <div class="container">
             <div class="page-header">
-                <h2>คณาจารย์ประจำหลักสูตร</h2>
+                <h2><i class="fa-solid fa-graduation-cap" style="margin-right: 15px; opacity: 0.8;"></i>คณาจารย์ประจำหลักสูตร</h2>
                 <p>คณะมนุษยศาสตร์ หลักสูตรศิลปศาสตรบัณฑิต สาขาวิชาสารสนเทศศึกษา มหาวิทยาลัยศรีนครินทรวิโรฒ</p>
             </div>
 
@@ -136,5 +136,6 @@
         </div>
     </div>
 </main>
+<?php include 'includes/footer.php'; ?>
 </body>
 </html>

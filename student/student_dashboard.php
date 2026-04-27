@@ -30,45 +30,9 @@ $result_req = $conn->query($sql_req);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard | SWU Internship</title>
     <link rel="stylesheet" href="/internship_project/assets/css/style.css">
+    <link rel="stylesheet" href="/internship_project/assets/css/student_dashboard.css">
     <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        .student-content { padding: 40px 20px; max-width: 900px; margin: 80px auto 0 auto; }
-        
-        /* Card ข้อมูลนิสิต */
-        .profile-card {
-            background: white; padding: 25px; border-radius: 15px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08); border-top: 5px solid #9e1a32;
-            margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center;
-        }
-
-        .info-item { margin-bottom: 5px; }
-        .info-label { color: #888; font-size: 0.85em; margin-right: 10px; }
-        .info-value { color: #333; font-weight: bold; }
-
-        /* ส่วนตารางรายการ */
-        .request-section { background: white; padding: 25px; border-radius: 15px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; }
-        th { text-align: left; padding: 12px; border-bottom: 2px solid #f0f0f0; color: #666; font-size: 0.9em; }
-        td { padding: 15px 12px; border-bottom: 1px solid #f9f9f9; vertical-align: middle; }
-
-        /* Badge Status */
-        .status-badge {
-            padding: 5px 12px; border-radius: 15px; font-size: 0.85em; font-weight: bold; display: inline-block;
-        }
-        .status-1 { background: #fff4e5; color: #ff9800; }
-        .status-2 { background: #e3f2fd; color: #1976d2; }
-        .status-3 { background: #f3e5f5; color: #7b1fa2; }
-        .status-4 { background: #e8f5e9; color: #2e7d32; }
-        .status-9 { background: #ffebee; color: #c62828; }
-
-        .btn-request {
-            background: #9e1a32; color: white; padding: 10px 20px; border-radius: 8px;
-            text-decoration: none; font-weight: bold; transition: 0.3s; font-size: 0.9em;
-        }
-        .btn-request:hover { background: #7a1426; box-shadow: 0 4px 12px rgba(158, 26, 50, 0.3); }
-    </style>
 </head>
 <body>
 
@@ -76,22 +40,48 @@ $result_req = $conn->query($sql_req);
 
     <div class="student-content">
         <div class="profile-card">
-            <div>
-                <h2 style="margin: 0 0 10px 0; color: #9e1a32;">ยินดีต้อนรับ</h2>
-                <div class="info-item">
-                    <span class="info-label">ชื่อ-นามสกุล:</span>
-                    <span class="info-value"><?= $student['firstName'] . " " . $student['lastName']; ?></span>
-                </div>
-                <div class="info-item">
-                    <span class="info-label">รหัสนิสิต:</span>
-                    <span class="info-value"><?= $student['student_id']; ?></span>
-                </div>
-            </div>
-            <a href="student_internships_req.php" class="btn-request">+ ยื่นคำขอใหม่</a>
+    <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 15px;">
+        <div class="student-photo-square">
+            <?php 
+                $img_path = "../assets/image/students/" . $student['profile_img'];
+                if (!file_exists($img_path) || empty($student['profile_img'])) {
+                    $img_path = "../assets/image/students/default.jpg";
+                }
+            ?>
+            <img src="<?= $img_path; ?>" alt="Student Photo">
         </div>
 
+        <div class="student-info-detail">
+            <h2 style="color: #9e1a32; font-size: 1.4em; margin: 0 0 10px 0; width: 100%; text-align: center;">
+                ข้อมูลนิสิต
+            </h2>
+            <div class="info-item">
+                <span class="info-label">ชื่อ-นามสกุล:</span>
+                <span class="info-value"><?= $student['firstName'] . " " . $student['lastName']; ?></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">รหัสนิสิต:</span>
+                <span class="info-value"><?= $student['student_id']; ?></span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">ชั้นปี:</span>
+                <span class="info-value"> ปี 4 </span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">ปีการศึกษา:</span>
+                <span class="info-value"> 2569 </span>
+            </div>
+        </div>
+    </div>
+    
+    
+</div>
+
         <div class="request-section">
-            <h3 style="margin-top: 0; color: #444;">ประวัติการยื่นคำขอฝึกงาน</h3>
+            <div class="request-header">
+            <h3 style="margin: 0; color: #444;">ประวัติการยื่นคำขอฝึกงาน</h3>
+            <a href="student_internships_req.php" class="btn-request">+ ยื่นคำขอใหม่</a>
+        </div>
             
             <?php if ($result_req->num_rows > 0): ?>
                 <table>

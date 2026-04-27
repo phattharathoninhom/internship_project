@@ -27,7 +27,7 @@ body {
 
 .page-header {
     text-align: center;
-    padding: 40px 0;
+    padding: 20px 0;
     margin-bottom: 30px;
     background: linear-gradient(to bottom, #ffffff, #fcfcfc); /* เพิ่มมิติจางๆ */
     position: relative;

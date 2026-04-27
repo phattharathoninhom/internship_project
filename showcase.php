@@ -16,7 +16,7 @@
     <div class="main-content">
         <div class="container">
             
-            <div class="page-header">
+        <div class="page-header">
                 <h2>ข้อมูลหลักสูตร</h2>
                 <p>หลักสูตรศิลปศาสตรบัณฑิต สาขาวิชาสารสนเทศศึกษา (หลักสูตรปรับปรุง พ.ศ. 2560)</p>
             </div>
@@ -61,27 +61,6 @@
                     <i class="fas fa-quote-left"></i>
                     <p>สารสนเทศศึกษานำไปสู่การจัดการสารสนเทศเพื่อสังคม</p>
                     <i class="fas fa-quote-right"></i>
-                </div>
-
-                <div class="details-grid">
-                    <div class="info-card">
-                        <h3><i class="fas fa-bullseye icon-red"></i> วัตถุประสงค์หลักสูตร</h3>
-                        <ul class="swu-list">
-                            <li>มีคุณธรรมจริยธรรมทางวิชาชีพ และจิตสำนึกความรับผิดชอบต่อสังคม</li>
-                            <li>มีทักษะการรู้สารสนเทศเพื่อพัฒนาตนเองและผู้อื่น</li>
-                            <li>มีความรู้ความสามารถในการจัดการสารสนเทศโดยใช้เทคโนโลยีที่เหมาะสม</li>
-                        </ul>
-                    </div>
-
-                    <div class="info-card">
-                        <h3><i class="fas fa-star icon-red"></i> จุดเด่นของหลักสูตร</h3>
-                        <div class="highlights">
-                            <strong>สำหรับนิสิต:</strong>
-                            <p>เน้นเทคโนโลยีสารสนเทศ, การวิจัยวิชาชีพ และการฝึกประสบการณ์จริง</p>
-                            <strong>สำหรับบัณฑิต:</strong>
-                            <p>เชี่ยวชาญการจัดเก็บค้นคืน, จัดหมวดหมู่ และบูรณาการศาสตร์สารสนเทศ</p>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="details-grid">

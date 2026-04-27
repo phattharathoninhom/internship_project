@@ -22,9 +22,10 @@
             </div>
 
             <div class="teacher-grid">
+                <!-- อาจารย์ดิษฐ์ -->
                 <a href="profile/dit.php" class="teacher-card top-red">
                     <div class="avatar-wrapper">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2021/01/Dit-scaled.jpg" alt="อ.ดร.ดิษฐ์">
+                        <img src="assets/image/Dit.jpg" alt="อ.ดร.ดิษฐ์">
                     </div>
                     <h3 class="t-name">อ.ดร.ดิษฐ์ สุทธิวงศ์</h3>
                     <p class="t-pos">ประธานหลักสูตร</p>
@@ -35,10 +36,10 @@
                     </div>
                 </a>
 
-            
+                <!-- อาจารย์ฐิติ -->
                 <a href="profile/thiti.php" class="teacher-card">
                     <div class="avatar-wrapper">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2021/01/thiti-scaled.jpg" alt="อ.ดร.ฐิติ">
+                        <img src="assets/image/Thiti.jpg" alt="อ.ดร.ฐิติ">
                     </div>
                     <h3 class="t-name">อ.ดร.ฐิติ อติชาติชยากร</h3>
                     <p class="t-pos">เลขานุการประจำหลักสูตร</p>
@@ -49,10 +50,10 @@
                     </div>
                 </a>
 
-            
+                <!-- อาจารย์วิภากร -->
                 <a href="profile/vipakorn.php" class="teacher-card">
                     <div class="avatar-wrapper">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2020/02/Vipakorn-683x1024.jpg" alt="ผศ.ดร.วิภากร">
+                        <img src="assets/image/Vipakorn.jpg" alt="ผศ.ดร.วิภากร">
                     </div>
                     <h3 class="t-name">ผศ.ดร.วิภากร วัฒนสินธุ์</h3>
                     <p class="t-pos">อาจารย์ประจำหลักสูตร</p>
@@ -63,10 +64,10 @@
                     </div>
                 </a>
 
-            
-                <a href="teacher_profile.php?id=4" class="teacher-card">
+                <!-- อาจารย์โชติมา -->
+                <a href="profile/chotima.php" class="teacher-card">
                     <div class="avatar-wrapper">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2025/11/Chotima.jpg" alt="อ.โชติมา">
+                        <img src="assets/image/Chotima.jpg" alt="อ.โชติมา">
                     </div>
                     <h3 class="t-name">อ.โชติมา วัฒนะ</h3>
                     <p class="t-pos">อาจารย์ประจำหลักสูตร</p>
@@ -77,10 +78,10 @@
                     </div>
                 </a>
 
-            
-                <a href="teacher_profile.php?id=5" class="teacher-card">
+                <!-- อาจารย์โชติมา -->
+                <a href="profile/chokthamrong.php" class="teacher-card">
                     <div class="avatar-wrapper">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2025/02/Chokthamrong.jpg" alt="อ.ดร.โชคธำรงค์">
+                        <img src="assets/image/Chokthamrong.jpg" alt="อ.ดร.โชคธำรงค์">
                     </div>
                     <h3 class="t-name">อ.ดร.โชคธำรงค์ จงจอหอ</h3>
                     <p class="t-pos">อาจารย์ประจำหลักสูตร</p>
@@ -91,10 +92,10 @@
                     </div>
                 </a>
 
-            
-                <a href="teacher_profile.php?id=6" class="teacher-card">
+                <!-- อาจารย์ดุษฎี -->
+                <a href="profile/dussadee.php" class="teacher-card">
                     <div class="avatar-wrapper">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2020/02/Dussadee-683x1024.jpg" alt="ผศ.ดร.ดุษฎี">
+                        <img src="assets/image/Dussadee.jpg" alt="ผศ.ดร.ดุษฎี">
                     </div>
                     <h3 class="t-name">ผศ.ดร.ดุษฎี สีวังคำ</h3>
                     <p class="t-pos">อาจารย์ประจำหลักสูตร</p>
@@ -105,24 +106,23 @@
                     </div>
                 </a>
 
-            
-                <a href="teacher_profile.php?id=7" class="teacher-card">
+                <!-- อาจารย์ศศิพิมล -->
+                <a href="profile/sasipimol.php" class="teacher-card">
                     <div class="avatar-wrapper">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2020/02/Sasipimol-683x1024.jpg" alt="ผศ.ดร.ศศิพิมล">
+                        <img src="assets/image/Sasipimol.jpg" alt="ผศ.ดร.ศศิพิมล">
                     </div>
                     <h3 class="t-name">ผศ.ดร.ศศิพิมล ประพินพงศกร</h3>
                     <p class="t-pos">อาจารย์ประจำหลักสูตร</p>
                     <div class="t-divider"></div>
                     <div class="t-contact">
-                        <p><i class="fas fa-phone-alt"></i> 02-649-5000 ต่อ 16508</p>
                         <p><i class="fas fa-envelope"></i> sasipimol@g.swu.ac.th</p>
                     </div>
                 </a>
 
-            
-                <a href="teacher_profile.php?id=8" class="teacher-card">
+                <!-- อาจารย์ศุมรรษตรา -->
+                <a href="profile/sumattra.php" class="teacher-card">
                     <div class="avatar-wrapper">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2020/02/Sumattra-683x1024.jpg" alt="อาจารย์ ดร. ศุมรรษตรา แสนวา">
+                        <img src="assets/image/Sumattra.jpg" alt="อาจารย์ ดร. ศุมรรษตรา แสนวา">
                     </div>
                     <h3 class="t-name">อาจารย์ ดร. ศุมรรษตรา แสนวา</h3>
                     <p class="t-pos">อาจารย์ประจำหลักสูตร</p>

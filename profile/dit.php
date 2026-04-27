@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ประวัติอาจารย์ - นาย ดิษฐ์ สุทธิวงศ์</title>
+    <title>ประวัติอาจารย์ - อ.ดร.ดิษฐ์ สุทธิวงศ์</title>
     <link rel="stylesheet" href="../assets/css/style.css">
     <link rel="stylesheet" href="../assets/css/profile.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -19,7 +19,7 @@
                 
                 <div class="profile-header">
                     <div class="profile-img-box">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2021/01/Dit-scaled.jpg" alt="อ.ดร.ดิษฐ์">
+                        <img src="../assets/image/dit.jpg" alt="อ.ดร.ดิษฐ์">
                     </div>
                     <div class="profile-title">
                         <h1>อ.ดร.ดิษฐ์ สุทธิวงศ์</h1>
@@ -67,7 +67,7 @@
                                     <tr>
                                         <td>Ph.D.</td>
                                         <td>Information Technology</td>
-                                        <td>มหาวิทยาลัยพระจอมเกล้าพระนครเหนือ</td>
+                                        <td>มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ</td>
                                         <td>2562</td>
                                     </tr>
                                 </tbody>

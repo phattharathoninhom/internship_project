@@ -19,7 +19,7 @@
                 
                 <div class="profile-header">
                     <div class="profile-img-box">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2020/02/Vipakorn-683x1024.jpg" alt="ผศ.ดร.วิภากร">
+                        <img src="../assets/image/Vipakorn.jpg" alt="ผศ.ดร.วิภากร">
                     </div>
                     <div class="profile-title">
                         <h1>ผศ.ดร.วิภากร วัฒนสินธุ์</h1>
@@ -70,13 +70,13 @@
                                     <tr>
                                         <td>MBA</td>
                                         <td>Finance</td>
-                                        <td>Colorado State University</td>
+                                        <td>Colorado State University, USA</td>
                                         <td>2542</td>
                                     <tr>
                                     <tr>
                                         <td>MS</td>
                                         <td>Computer Information System</td>
-                                        <td>Colorado State University</td>
+                                        <td>Colorado State University, USA</td>
                                         <td>2545</td>
                                     <tr>
                                     <tr>

@@ -63,8 +63,8 @@
             </tr>
             <tr>
                 <td class="id-col">66xxxxxxxx</td>
-                <td class="name-col">นายรถถัง ประจัญบาน</td>
-                <td>rodthang@swu.ac.th</td>
+                <td class="name-col">นายธนภัทร ธนปัญญากุล</td>
+                <td>tanapat@swu.ac.th</td>
                 <td>ปริญญาตรี</td>
             </tr>
             <tr>

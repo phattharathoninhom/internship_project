@@ -19,7 +19,7 @@
                 
                 <div class="profile-header">
                     <div class="profile-img-box">
-                        <img src="https://is.hu.swu.ac.th/wp-content/uploads/2021/01/thiti-scaled.jpg" alt="อ.ดร.ฐิติ">
+                        <img src="../assets/image/Thiti.jpg" alt="อ.ดร.ฐิติ">
                     </div>
                     <div class="profile-title">
                         <h1>อ.ดร.ฐิติ อติชาติชยากร</h1>
@@ -49,7 +49,7 @@
                                         <th>วุฒิ</th>
                                         <th>สาขาวิชา</th>
                                         <th>สถาบัน</th>
-                                        <th>ปีที่สำเร็จ</th>
+                                        <th>ปีที่สำเร็จการศึกษา</th>
                                     </tr>
                                 </thead>
                                 <tbody>

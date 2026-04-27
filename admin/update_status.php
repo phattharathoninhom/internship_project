@@ -76,8 +76,12 @@ $data = $result->fetch_assoc();
                     
                     <div class="request-details">
                         <div class="detail-item">
-                            <span class="label">สถานที่ฝึกงาน:</span>
+                            <span class="label">บริษัทที่ฝึกงาน:</span>
                             <span class="value"><?= $data['company_name']; ?></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">ที่อยู่บริษัท:</span>
+                            <span class="value"><?= $data['company_address']; ?></span>
                         </div>
                         <div class="detail-item">
                             <span class="label">วันที่ฝึกงาน:</span>
@@ -107,7 +111,7 @@ $data = $result->fetch_assoc();
                                 <option value="2" <?= $data['status_code'] == 2 ? 'selected' : ''; ?>>อาจารย์ที่ปรึกษาอนุมัติ</option>
                                 <option value="3" <?= $data['status_code'] == 3 ? 'selected' : ''; ?>>ออกใบส่งตัวเรียบร้อย</option>
                                 <option value="4" <?= $data['status_code'] == 4 ? 'selected' : ''; ?>>ฝึกงานเสร็จสิ้น</option>
-                                <option value="9" <?= $data['status_code'] == 9 ? 'selected' : ''; ?>>ยกเลิกs</option>
+                                <option value="9" <?= $data['status_code'] == 9 ? 'selected' : ''; ?>>ยกเลิก</option>
                             </select>
                         </div>
 
@@ -122,7 +126,7 @@ $data = $result->fetch_assoc();
                         </div>
 
                         <button type="submit" class="btn-submit">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> อัปเดตข้อมูล
+                            <i class="fa-solid fa-cloud-arrow-up"></i> บันทึกข้อมูล
                         </button>
                     </form>
                 </div>

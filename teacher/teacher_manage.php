@@ -2,34 +2,45 @@
 session_start();
 require_once('../includes/connect.php');
 
-// ตรวจสอบสิทธิ์ (ต้องเป็นอาจารย์เท่านั้น)
+// 1. เช็คสิทธิ์ (Teacher เท่านั้น)
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'teacher') {
-    header("Location: ../index.php");
+    header("Location: ../index.html");
     exit();
 }
 
-// รับ ID คำขอจาก URL
+// 2. รับ ID คำขอ
 if (!isset($_GET['id'])) {
     header("Location: teacher_dashboard.php");
     exit();
 }
-
 $req_id = $_GET['id'];
 
-// ดึงข้อมูลคำขอและข้อมูลนิสิตมาโชว์
+// 3. ส่วนประมวลผลการบันทึก (เมื่อกดปุ่ม Submit ในหน้าตัวเอง)
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_update'])) {
+    $status_code = $_POST['status_code'];
+    $advisor_note = $_POST['advisor_note'];
+
+    $stmt = $conn->prepare("UPDATE internship_request SET status_code = ?, advisor_note = ? WHERE request_id = ?");
+    $stmt->bind_param("isi", $status_code, $advisor_note, $req_id);
+
+    if ($stmt->execute()) {
+        echo "<script>alert('บันทึกข้อมูลเรียบร้อยแล้ว'); window.location.href='teacher_dashboard.php';</script>";
+        exit();
+    } else {
+        $error_msg = "เกิดข้อผิดพลาด: " . $conn->error;
+    }
+}
+
+// 4. ดึงข้อมูลมาโชว์ในฟอร์ม
 $sql = "SELECT r.*, s.firstName, s.lastName, s.profile_img, st.status_name 
         FROM internship_request r
         JOIN students s ON r.student_id = s.student_id
         LEFT JOIN status_list st ON r.status_code = st.status_code
         WHERE r.request_id = '$req_id'";
-
 $result = $conn->query($sql);
 $data = $result->fetch_assoc();
 
-if (!$data) {
-    echo "ไม่พบข้อมูลคำขอ";
-    exit();
-}
+if (!$data) { echo "ไม่พบข้อมูล"; exit(); }
 ?>
 
 <!DOCTYPE html>
@@ -63,8 +74,12 @@ if (!$data) {
                     
                     <div class="request-details">
                         <div class="detail-item">
-                            <span class="label">สถานที่ฝึกงาน:</span>
+                            <span class="label">บริษัทที่ฝึกงาน:</span>
                             <span class="value"><?= $data['company_name']; ?></span>
+                        </div>
+                        <div class="detail-item">
+                            <span class="label">ที่อยู่บริษัท:</span>
+                            <span class="value"><?= $data['company_address']; ?></span>
                         </div>
                         <div class="detail-item">
                             <span class="label">วันที่ฝึกงาน:</span>
@@ -81,24 +96,24 @@ if (!$data) {
                 </div>
 
                 <div class="action-section">
-                    <form action="process_teacher_update.php" method="POST">
+                    <form action="" method="POST">
                         <input type="hidden" name="request_id" value="<?= $req_id; ?>">
 
                         <div class="form-group">
                             <label><i class="fa-solid fa-tasks"></i> ปรับปรุงสถานะคำขอ</label>
                             <select name="status_code" class="status-select">
-                                <option value="2" <?= $data['status_code'] == 2 ? 'selected' : ''; ?>>รับเรื่องเข้าระบบ</option>   
-                                <option value="4" <?= $data['status_code'] == 4 ? 'selected' : ''; ?>>อนุมัติ</option>
+                                <option value="1" <?= $data['status_code'] == 1 ? 'selected' : ''; ?>>รับเรื่องเข้าระบบ</option>   
+                                <option value="2" <?= $data['status_code'] == 2 ? 'selected' : ''; ?>>อนุมัติ</option>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label><i class="fa-solid fa-comment-dots"></i> บันทึกนิเทศ</label>
-                            <textarea name="advisor_note" rows="5" placeholder="ใส่ข้อความที่ต้องการแจ้งนิสิต หรือบันทึกการนิเทศที่นี่..."><?= $data['advisor_note']; ?></textarea>
+                            <textarea name="advisor_note" rows="5" placeholder="พิมพ์ข้อความแจ้งนิสิต..."><?= $data['advisor_note']; ?></textarea>
                         </div>
 
-                        <button type="submit" class="btn-submit">
-                            <i class="fa-solid fa-save"></i> บันทึก
+                        <button type="submit" name="save_update" class="btn-submit">
+                            <i class="fa-solid fa-save"></i> บันทึกข้อมูล
                         </button>
                     </form>
                 </div>

@@ -42,7 +42,7 @@ $result = $conn->query($sql);
                 <p style="margin: 5px 0 0 0; color: #666;">รายการคำขอฝึกงานที่รอดำเนินการ</p>
             </div>
             <div style="text-align: right;">
-                <strong>อาจารย์:</strong> <?php echo $_SESSION['name']; ?>
+                <strong>Teacher:</strong> <?php echo $_SESSION['name']; ?>
             </div>
         </div>
 

@@ -1,4 +1,3 @@
-/* การตั้งค่า Font และรากฐานของระบบ */
 :root {
     --swu-red: #9e1b32;
     --swu-dark: #7a1526;
@@ -14,10 +13,8 @@ body {
     background-color: var(--light-gray);
 }
 
-
-/* --- Main Layout Containers --- */
 .main-content {
-    padding-top: 100px; /* พื้นที่เผื่อ Navbar */
+    padding-top: 100px;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -30,8 +27,6 @@ body {
     margin: 0 auto;
 }
 
-
-/* --- Showcase Page Specifics --- */
 .page-header {
     text-align: center;
     margin-bottom: 40px;
@@ -89,16 +84,144 @@ body {
     color: var(--white);
 }
 
-/* Animations */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 768px) {
     .nav-container { padding: 0.5rem 1rem; }
     .nav-logo { font-size: 1.1rem; }
     .form-row { flex-direction: column; gap: 0; }
     .login-container, .register-container { padding: 2rem 1.5rem; }
+}
+
+.curriculum-layout {
+    margin-top: 20px;
+}
+
+.card-header-swu {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: var(--swu-red);
+}
+
+.card-header-swu i {
+    font-size: 1.5rem;
+}
+
+.curriculum-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.curriculum-table th {
+    text-align: left;
+    padding: 15px;
+    background: #fcfcfc;
+    color: var(--text-muted);
+    font-weight: 600;
+    width: 30%;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.curriculum-table td {
+    padding: 15px;
+    color: var(--text-main);
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.philosophy-card {
+    background: linear-gradient(135deg, var(--swu-red), var(--swu-red-dark));
+    color: #9e1b32;
+    padding: 40px;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-strong);
+}
+
+.philosophy-card p {
+    font-size: 1.5rem;
+    font-weight: 600;
+    display: inline-block;
+    margin: 0 15px;
+}
+
+.swu-list {
+    list-style: none;
+    padding: 0;
+}
+
+.swu-list li {
+    padding: 10px 0;
+    padding-left: 30px;
+    position: relative;
+    color: var(--text-muted);
+}
+
+.swu-list li::before {
+    content: "\f058";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    position: absolute;
+    left: 0;
+    color: var(--swu-red);
+}
+
+.job-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.job-tag {
+    background: white;
+    color: var(--swu-red);
+    border: 1px solid var(--swu-red);
+    padding: 8px 18px;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.job-tag:hover {
+    background: var(--swu-red);
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-sm);
+}
+
+.icon-red {
+    color: var(--swu-red);
+    margin-right: 10px;
+}
+
+.info-card {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-soft);
+    margin-bottom: 30px;
+    transition: var(--transition);
+}
+
+.info-card:hover {
+    box-shadow: var(--shadow-strong);
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+    }
 }

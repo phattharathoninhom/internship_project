@@ -1,11 +1,10 @@
-/* --- Global Styles & SWU Palette --- */
 @import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap');
 
 :root {
     --swu-red: #9e1b32;
     --swu-red-dark: #7a1526;
     --swu-red-light: #c12741;
-    --swu-gold: #b3a369; /* สีทองรองสำหรับตัดขอบหรือเน้นบางจุด */
+    --swu-gold: #b3a369;
     --text-main: #2d2d2d;
     --text-muted: #666666;
     --bg-body: #fdfdfd;
@@ -29,12 +28,9 @@ body {
     background-color: var(--light-gray);
 }
 
-
-
-/* --- Content Layout --- */
 .main-content {
     display: block;
-    padding-top: 100px;
+    padding-top: 20px;
     min-height: auto;
 }
 
@@ -63,12 +59,10 @@ body {
     margin: 0 auto;
 }
 
-/* --- News Grid & Cards (The Master Design) --- */
 .news-grid {
     margin-bottom: 50px;
 }
 
-/* Featured Card: โดดเด่นด้วย Layout แนวนอน */
 .news-card.featured {
     display: grid;
     grid-template-columns: 1.2fr 1fr;
@@ -89,14 +83,8 @@ body {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.8s ease;
 }
 
-.news-card:hover .news-image img {
-    transform: scale(1.08);
-}
-
-/* News Badges */
 .news-badge {
     position: absolute;
     top: 25px;
@@ -121,7 +109,6 @@ body {
     margin-bottom: 12px;
 }
 
-/* Normal Cards Grid */
 .news-row {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
@@ -140,7 +127,7 @@ body {
 }
 
 .news-card:hover {
-    transform: translateY(-12px);
+    transform: translateY(-8px);
     box-shadow: var(--shadow-strong);
 }
 
@@ -178,7 +165,6 @@ body {
     overflow: hidden;
 }
 
-/* Read More Button Styling */
 .read-more {
     margin-top: auto;
     color: var(--swu-red);
@@ -199,7 +185,6 @@ body {
     transform: translateX(8px);
 }
 
-/* --- Responsive Adjustments --- */
 @media (max-width: 992px) {
     .news-card.featured {
         grid-template-columns: 1fr;
@@ -213,4 +198,360 @@ body {
     .page-header h2 { font-size: 2rem; }
     .nav-container { padding: 1rem; }
     .news-row { grid-template-columns: 1fr; }
+}
+
+.hero-section {
+    width: 100%;
+    height: 450px;
+    margin-top: 60px;
+    overflow: hidden;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.slide-content {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--white);
+}
+
+.slide-content h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    animation: fadeInUp 0.8s ease;
+}
+
+.slide-content p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.5s ease;
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 20px;
+}
+
+.swiper-pagination-bullet-active {
+    background: var(--swu-red) !important;
+}
+
+/* Animation เล็กๆ ให้ข้อความ */
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+    .hero-section { height: 400px; }
+    .slide-content h1 { font-size: 2rem; }
+    .slide-content p { font-size: 1rem; }
+}
+
+.concept-section {
+    padding: 60px 0;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.concept-wrapper {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.concept-title {
+    flex: 0 0 300px;
+}
+
+.concept-title h2 {
+    font-size: 2rem;
+    color: var(--text-main);
+    line-height: 1.2;
+    margin-bottom: 15px;
+}
+
+.concept-title h2 span {
+    color: var(--swu-red);
+    font-weight: 800;
+}
+
+.concept-title p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.concept-title .highlight {
+    color: var(--swu-red);
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.concept-cards {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    flex: 1;
+    width: 100%;
+}
+
+.c-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 15px;
+    padding: 15px 10px;
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.c-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--swu-red);
+    box-shadow: var(--shadow-soft);
+}
+
+/* วงกลมตัวอักษร */
+.c-circle {
+    width: 60px;
+    height: 60px;
+    background-color: var(--swu-red);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    font-weight: 800;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(158, 27, 50, 0.3);
+}
+
+.c-text {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: var(--text-main);
+}
+
+.c-text strong {
+    font-size: 1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .concept-wrapper { flex-direction: column; text-align: center; }
+    .concept-title { flex: 1; }
+    .concept-cards { justify-content: center; }
+}
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.academic-section {
+    padding: 10px 0;
+    text-align: center;
+    background-color: var(--white);
+}
+
+.academic-header h2 {
+    font-size: 2.5rem;
+    color: var(--swu-red);
+    font-weight: 800;
+    margin-bottom: 10px;
+    position: relative;
+    display: inline-block;
+}
+
+.academic-header h2::after {
+    content: '';
+    display: block;
+    width: 50px;
+    height: 4px;
+    background: var(--swu-red);
+    margin: 10px auto;
+}
+
+.academic-header p {
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+/* Grid Layout 4 Columns */
+.academic-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.academic-card {
+    padding: 40px 20px;
+    border-radius: 20px;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+    min-height: 380px;
+}
+
+.academic-card:hover {
+    transform: translateY(-15px);
+}
+
+/* ตั้งค่าสีตามรูปภาพ */
+.admission { background-color: #8B0000; }
+.undergraduate { background-color: #E30613; }
+.graduate { background-color: #1A2433; }
+.lifelong { background-color: #A0A5B0; }
+
+
+.aca-icon {
+    width: 80px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    margin-bottom: 25px;
+}
+
+.academic-card h3 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.aca-sub {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    opacity: 0.9;
+}
+
+.aca-desc {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: auto; 
+    opacity: 0.8;
+}
+
+.aca-arrow {
+    width: 40px;
+    height: 40px;
+    background: white;
+    color: #333;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+@media (max-width: 992px) {
+    .academic-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .academic-grid { grid-template-columns: 1fr; }
+}
+
+.academic-card {
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.academic-card:hover {
+    transform: translateY(-15px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.aca-arrow {
+    transition: all 0.3s ease;
+}
+
+.academic-card:hover .aca-arrow {
+    background-color: var(--swu-red);
+    color: white;
+    transform: scale(1.1);
+}
+
+.aca-icon {
+    transition: transform 0.5s ease;
+}
+
+.academic-card:hover .aca-icon {
+    transform: rotate(10deg) scale(1.1);
+}
+
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.4s ease;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-overlay.active {
+    display: flex;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+    transform: scale(0.7);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); 
+}
+
+
+.modal-overlay.active .modal-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.c-card {
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1), 
+                box-shadow 0.4s ease;
+    cursor: pointer;
+}
+
+.c-card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 10px 25px rgba(158, 27, 50, 0.15);
+    border-color: var(--swu-red);
+}
+
+.c-circle {
+    transition: transform 0.3s ease;
+}
+
+.c-card:hover .c-circle {
+    transform: scale(1.1); 
 }

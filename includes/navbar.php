@@ -10,7 +10,7 @@ $base_url = "/internship_project/";
         
         <ul class="nav-menu">
             <li><a href="<?php echo $base_url; ?>index.php" class="<?php echo ($current_page == 'index.php') ? 'active' : ''; ?>">หน้าแรก</a></li>
-            <li><a href="<?php echo $base_url; ?>showcase.php" class="<?php echo ($current_page == 'showcase.php') ? 'active' : ''; ?>">Showcase</a></li>
+            <li><a href="<?php echo $base_url; ?>showcase.php" class="<?php echo ($current_page == 'showcase.php') ? 'active' : ''; ?>">หลักสูตร</a></li>
             
             <li class="dropdown">
                 <a href="javascript:void(0)" class="dropbtn <?php echo (in_array($current_page, $std_pages)) ? 'active' : ''; ?>">ข้อมูลนิสิต</a>

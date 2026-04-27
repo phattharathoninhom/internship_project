@@ -17,60 +17,109 @@
         <div class="container">
             
             <div class="page-header">
-                <h2>Showcase ผลงานนิสิต</h2>
-                <p>รวมตัวอย่างผลงานและประสบการณ์การฝึกงานที่น่าสนใจของนิสิต มศว</p>
+                <h2>ข้อมูลหลักสูตร</h2>
+                <p>หลักสูตรศิลปศาสตรบัณฑิต สาขาวิชาสารสนเทศศึกษา (หลักสูตรปรับปรุง พ.ศ. 2560)</p>
             </div>
 
-            <div class="showcase-grid">
-                
-                <div class="showcase-card">
-                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=600&auto=format&fit=crop" alt="Project Thumbnail" class="card-img">
-                    <div class="card-body">
-                        <h3>ระบบจองห้องประชุมออนไลน์</h3>
-                        <p class="student-name">นายพากเพียร มศว</p>
-                        <p class="major-year">วิทยาการคอมพิวเตอร์ | ชั้นปีที่ 4</p>
-                        <p class="company">ฝึกงานที่: บริษัท อินโนเวชั่น จำกัด</p>
-                        <a href="#" class="view-btn">ดูรายละเอียด</a>
+            <div class="curriculum-layout">
+                <div class="info-card info-main">
+                    <div class="card-header-swu">
+                        <i class="fas fa-university"></i>
+                        <h3>ข้อมูลทั่วไป</h3>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="curriculum-table">
+                            <tr>
+                                <th>ชื่อสถาบัน</th>
+                                <td>มหาวิทยาลัยศรีนครินทรวิโรฒ</td>
+                            </tr>
+                            <tr>
+                                <th>คณะ/สำนัก</th>
+                                <td>คณะมนุษยศาสตร์</td>
+                            </tr>
+                            <tr>
+                                <th>ชื่อหลักสูตร (TH)</th>
+                                <td>ศิลปศาสตรบัณฑิต สาขาวิชาสารสนเทศศึกษา</td>
+                            </tr>
+                            <tr>
+                                <th>ชื่อหลักสูตร (EN)</th>
+                                <td>Bachelor of Arts Program in Information Studies</td>
+                            </tr>
+                            <tr>
+                                <th>ชื่อปริญญา (TH)</th>
+                                <td>ศิลปศาสตรบัณฑิต (สารสนเทศศึกษา) / ศศ.บ.</td>
+                            </tr>
+                            <tr>
+                                <th>ชื่อปริญญา (EN)</th>
+                                <td>Bachelor of Arts (Information Studies) / B.A.</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
 
-                <div class="showcase-card">
-                    <img src="https://images.unsplash.com/photo-1581291518857-4e27b48ff24e?q=80&w=600&auto=format&fit=crop" alt="Project Thumbnail" class="card-img">
-                    <div class="card-body">
-                        <h3>การออกแบบ UI สำหรับแอปพลิเคชัน</h3>
-                        <p class="student-name">นางสาวเรียนดี นามสมมติ</p>
-                        <p class="major-year">ออกแบบผลิตภัณฑ์ | ชั้นปีที่ 3</p>
-                        <p class="company">ฝึกงานที่: สตูดิโอดีไซน์ แอนด์ โค</p>
-                        <a href="#" class="view-btn">ดูรายละเอียด</a>
+                <div class="philosophy-card">
+                    <i class="fas fa-quote-left"></i>
+                    <p>สารสนเทศศึกษานำไปสู่การจัดการสารสนเทศเพื่อสังคม</p>
+                    <i class="fas fa-quote-right"></i>
+                </div>
+
+                <div class="details-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-bullseye icon-red"></i> วัตถุประสงค์หลักสูตร</h3>
+                        <ul class="swu-list">
+                            <li>มีคุณธรรมจริยธรรมทางวิชาชีพ และจิตสำนึกความรับผิดชอบต่อสังคม</li>
+                            <li>มีทักษะการรู้สารสนเทศเพื่อพัฒนาตนเองและผู้อื่น</li>
+                            <li>มีความรู้ความสามารถในการจัดการสารสนเทศโดยใช้เทคโนโลยีที่เหมาะสม</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-star icon-red"></i> จุดเด่นของหลักสูตร</h3>
+                        <div class="highlights">
+                            <strong>สำหรับนิสิต:</strong>
+                            <p>เน้นเทคโนโลยีสารสนเทศ, การวิจัยวิชาชีพ และการฝึกประสบการณ์จริง</p>
+                            <strong>สำหรับบัณฑิต:</strong>
+                            <p>เชี่ยวชาญการจัดเก็บค้นคืน, จัดหมวดหมู่ และบูรณาการศาสตร์สารสนเทศ</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="showcase-card">
-                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=600&auto=format&fit=crop" alt="Project Thumbnail" class="card-img">
-                    <div class="card-body">
-                        <h3>กลยุทธ์การตลาดออนไลน์</h3>
-                        <p class="student-name">นายเก่งกาจ แสนดี</p>
-                        <p class="major-year">การตลาด | ชั้นปีที่ 4</p>
-                        <p class="company">ฝึกงานที่: มีเดีย โซลูชั่น จำกัด</p>
-                        <a href="#" class="view-btn">ดูรายละเอียด</a>
+                <div class="details-grid">
+                    <div class="info-card">
+                        <h3><i class="fas fa-bullseye icon-red"></i> วัตถุประสงค์หลักสูตร</h3>
+                        <ul class="swu-list">
+                            <li>มีคุณธรรมจริยธรรมทางวิชาชีพ และจิตสำนึกความรับผิดชอบต่อสังคม</li>
+                            <li>มีทักษะการรู้สารสนเทศเพื่อพัฒนาตนเองและผู้อื่น</li>
+                            <li>มีความรู้ความสามารถในการจัดการสารสนเทศโดยใช้เทคโนโลยีที่เหมาะสม</li>
+                        </ul>
+                    </div>
+
+                    <div class="info-card">
+                        <h3><i class="fas fa-star icon-red"></i> จุดเด่นของหลักสูตร</h3>
+                        <div class="highlights">
+                            <strong>สำหรับนิสิต:</strong>
+                            <p>เน้นเทคโนโลยีสารสนเทศ, การวิจัยวิชาชีพ และการฝึกประสบการณ์จริง</p>
+                            <strong>สำหรับบัณฑิต:</strong>
+                            <p>เชี่ยวชาญการจัดเก็บค้นคืน, จัดหมวดหมู่ และบูรณาการศาสตร์สารสนเทศ</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="showcase-card">
-                    <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?q=80&w=600&auto=format&fit=crop" alt="Project Thumbnail" class="card-img">
-                    <div class="card-body">
-                        <h3>ระบบจัดการคลังสินค้า</h3>
-                        <p class="student-name">นางสาวตั้งใจ เรียนจริง</p>
-                        <p class="major-year">วิศวกรรมอุตสาหการ | ชั้นปีที่ 4</p>
-                        <p class="company">ฝึกงานที่: โลจิสติกส์ เวิร์ล กว้างขวาง</p>
-                        <a href="#" class="view-btn">ดูรายละเอียด</a>
+                <div class="info-card job-section">
+                    <h3><i class="fas fa-briefcase icon-red"></i> อาชีพที่ประกอบได้หลังสำเร็จการศึกษา</h3>
+                    <div class="job-tags">
+                        <span class="job-tag">อาจารย์</span>
+                        <span class="job-tag">บรรณารักษ์</span>
+                        <span class="job-tag">นักเอกสารสนเทศ</span>
+                        <span class="job-tag">นักวิชาการสารสนเทศ</span>
+                        <span class="job-tag">นักวิเคราะห์ระบบ</span>
+                        <span class="job-tag">นักจดหมายเหตุ</span>
                     </div>
                 </div>
-
-                </div>
-
+            </div>
         </div>
     </div>
+
     <?php include 'includes/footer.php'; ?>
 </body>
 </html>

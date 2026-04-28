@@ -19,9 +19,10 @@ $req_id = $_GET['id'];
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_update'])) {
     $status_code = $_POST['status_code'];
     $advisor_note = $_POST['advisor_note'];
+    $editor = $_SESSION['name'];
 
-    $stmt = $conn->prepare("UPDATE internship_request SET status_code = ?, advisor_note = ? WHERE request_id = ?");
-    $stmt->bind_param("isi", $status_code, $advisor_note, $req_id);
+    $stmt = $conn->prepare("UPDATE internship_request SET status_code = ?, advisor_note = ?,editor = ? WHERE request_id = ?");
+    $stmt->bind_param("issi", $status_code, $advisor_note, $editor, $req_id);
 
     if ($stmt->execute()) {
         echo "<script>alert('บันทึกข้อมูลเรียบร้อยแล้ว'); window.location.href='teacher_dashboard.php';</script>";
@@ -31,12 +32,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['save_update'])) {
     }
 }
 
-// 4. ดึงข้อมูลมาโชว์ในฟอร์ม
-$sql = "SELECT r.*, s.firstName, s.lastName, s.profile_img, st.status_name 
+// 4. ดึงข้อมูลมาโชว์ในฟอร์ม (เพิ่มการ JOIN ตาราง)
+$sql = "SELECT 
+            r.*, 
+            s.firstName, 
+            s.lastName, 
+            s.profile_img, 
+            st.status_name,
+            c.company_name,
+            c.company_address, 
+            c.tel              
         FROM internship_request r
         JOIN students s ON r.student_id = s.student_id
         LEFT JOIN status_list st ON r.status_code = st.status_code
+        LEFT JOIN companies c ON r.company_id = c.company_id 
         WHERE r.request_id = '$req_id'";
+
 $result = $conn->query($sql);
 $data = $result->fetch_assoc();
 
@@ -82,8 +93,8 @@ if (!$data) { echo "ไม่พบข้อมูล"; exit(); }
                             <span class="value"><?= $data['company_address']; ?></span>
                         </div>
                         <div class="detail-item">
-                            <span class="label">ผู้ติดต่อ:</span>
-                            <span class="value"><?= $data['contact_person']; ?></span>
+                            <span class="label">เบอร์โทร:</span>
+                            <span class="value"><?= $data['tel']; ?></span>
                         </div>
                         <div class="detail-item">
                             <span class="label">วันที่ฝึกงาน:</span>

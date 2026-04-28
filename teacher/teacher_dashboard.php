@@ -12,11 +12,18 @@ $teacher_id = $_SESSION['user_id'];
 
 // --- ดึงข้อมูลนิสิตและรายการคำขอ (ตามข้อ 5.1) ---
 // ใช้ INNER JOIN เพื่อดึงเฉพาะนิสิตที่มีการส่งคำขอเข้ามาแล้ว
-$sql = "SELECT s.*, r.request_id, r.company_name, r.status_code, st.status_name
+$sql = "SELECT 
+            r.*, 
+            s.firstName, 
+            s.lastName, 
+            st.status_name, 
+            c.company_name 
         FROM internship_request r
-        INNER JOIN students s ON r.student_id = s.student_id
-        LEFT JOIN status_list st ON r.status_code = st.status_code
+        JOIN students s ON r.student_id = s.student_id
+        JOIN status_list st ON r.status_code = st.status_code
+        JOIN companies c ON r.company_id = c.company_id -- เชื่อมเพื่อเอาชื่อบริษัท
         ORDER BY r.request_id DESC";
+
 $result = $conn->query($sql);
 ?>
 
@@ -54,6 +61,7 @@ $result = $conn->query($sql);
                         <th>ชื่อ-นามสกุล</th>
                         <th>บริษัทที่สมัคร</th>
                         <th>สถานะ</th>
+                        <th>ผู้แก้ไข</th>
                         <th>รายละเอียด</th>
                     </tr>
                 </thead>
@@ -77,6 +85,9 @@ $result = $conn->query($sql);
                                 <span class="status-badge <?php echo $status_class; ?>">
                                     <?php echo $row['status_name'] ?? 'ไม่มีข้อมูล'; ?>
                                 </span>
+                            </td>
+                            <td>
+                                <?php echo $row['editor'] ?? '-'; ?>
                             </td>
                             <td>
                                 <a href="teacher_manage.php?id=<?php echo $row['request_id']; ?>" class="btn-action btn-view">ดูข้อมูล</a>

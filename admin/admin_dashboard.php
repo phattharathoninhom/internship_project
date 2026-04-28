@@ -8,11 +8,18 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'admin') {
     exit();
 }
 
-$sql = "SELECT r.*, s.firstName, s.lastName, st.status_name
+$sql = "SELECT 
+            r.*, 
+            s.firstName, 
+            s.lastName, 
+            st.status_name, 
+            c.company_name 
         FROM internship_request r
         JOIN students s ON r.student_id = s.student_id
         JOIN status_list st ON r.status_code = st.status_code
+        JOIN companies c ON r.company_id = c.company_id -- เชื่อมเพื่อเอาชื่อบริษัท
         ORDER BY r.request_id DESC";
+
 $result = $conn->query($sql);
 ?>
 

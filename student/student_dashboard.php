@@ -3,7 +3,7 @@ session_start();
 require_once('../includes/connect.php');
 
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'student') {
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
 }
 
@@ -15,11 +15,16 @@ $res_student = $conn->query($sql_student);
 $student = $res_student->fetch_assoc();
 
 // 2. ดึงรายการคำขอฝึกงานทั้งหมด (ดึงทุกแถวที่เคยยื่น)
-$sql_req = "SELECT r.*, st.status_name 
+$sql_req = "SELECT 
+                r.*, 
+                st.status_name, 
+                c.company_name 
             FROM internship_request r
             LEFT JOIN status_list st ON r.status_code = st.status_code
+            LEFT JOIN companies c ON r.company_id = c.company_id
             WHERE r.student_id = '$student_id'
-            ORDER BY r.request_date DESC"; // เอาล่าสุดขึ้นก่อน
+            ORDER BY r.request_date DESC"; 
+            
 $result_req = $conn->query($sql_req);
 ?>
 
@@ -65,11 +70,7 @@ $result_req = $conn->query($sql_req);
             </div>
             <div class="info-item">
                 <span class="info-label">ชั้นปี:</span>
-                <span class="info-value"> ปี 4 </span>
-            </div>
-            <div class="info-item">
-                <span class="info-label">ปีการศึกษา:</span>
-                <span class="info-value"> 2569 </span>
+                <span class="info-value">ปี <?= $student['grade']; ?></span>
             </div>
         </div>
     </div>

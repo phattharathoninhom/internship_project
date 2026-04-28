@@ -1,4 +1,11 @@
-<?php session_start(); ?><!DOCTYPE html>
+<?php
+session_start();
+require_once('includes/connect.php');
+
+$sql = "SELECT * FROM students WHERE grade = 3 ORDER BY student_id ASC";
+$result = $conn->query($sql);
+?>
+<!DOCTYPE html>
 <html lang="th">
 <head>
     <meta charset="UTF-8">
@@ -31,67 +38,23 @@
             </tr>
         </thead>
         <tbody>
+    <?php if ($result && $result->num_rows > 0): ?>
+        <?php while($row = $result->fetch_assoc()): ?>
             <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นางสาวก๋องคำ สิริพล</td>
-                <td>kongkham.s@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
+                <td class="id-col"><?php echo htmlspecialchars($row['student_id']); ?></td>
+                <td class="name-col">
+                    <?php echo htmlspecialchars($row['firstName'] . " " . $row['lastName']); ?>
+                </td>
+                <td><?php echo htmlspecialchars($row['email']); ?></td>
+                <td><?php echo " ปี " . htmlspecialchars($row['grade']); ?></td>
             </tr>
-            <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นางสาวจอมไตร ขาวคง</td>
-                <td>jomtrai.k@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
-            </tr>
-            <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นางสาวดนุพัฒน์ ราชโยธา</td>
-                <td>danupat.r@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
-            </tr>
-            <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นางสาวธนภัทร ธนปัญญากุล</td>
-                <td>tanapat.t@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
-            </tr>
-            <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นางสาวภัทรธร อินทร์หอม</td>
-                <td>phattharathon.i@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
-            </tr>
-            <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นางสาวอภิญญ์วัตร นีรชรานุสรณ์</td>
-                <td>apinwat@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
-            </tr>
-            <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นางสาวธนพนธ์ ข้อพิสังข์</td>
-                <td>tanaphon.k@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
-            </tr>
-            <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นายปัญญา เลิศปรีชา</td>
-                <td>panya.l@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
-            </tr>
-            <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นายธนากร มั่งมี</td>
-                <td>thanakorn.m@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
-            </tr>
-            <tr>
-                <td class="id-col">67xxxxxxxx</td>
-                <td class="name-col">นายพงสิทธิ์ คำภีร์</td>
-                <td>phongsit.k@swu.ac.th</td>
-                <td>ปริญญาตรี</td>
-            </tr>
-            </tbody>
+        <?php endwhile; ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="4" style="text-align:center;">ไม่พบข้อมูลนิสิต</td>
+        </tr>
+    <?php endif; ?>
+</tbody>
     </table>
 </div>
         </div>

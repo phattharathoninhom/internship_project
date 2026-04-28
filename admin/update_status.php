@@ -29,17 +29,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_action'])) {
 // 3. ดึงข้อมูลมาโชว์ในฟอร์ม (GET)
 $req_id = isset($_GET['id']) ? $_GET['id'] : null;
 if (!$req_id) {
-    header("Location: index.php"); // หรือดีดกลับ Dashboard
+    header("Location: admin_dashboard.php"); 
     exit();
 }
 
-$sql = "SELECT r.*, s.firstName, s.lastName, s.profile_img, st.status_name 
+$sql = "SELECT 
+            r.*, 
+            s.firstName, 
+            s.lastName, 
+            s.profile_img, 
+            st.status_name,
+            c.company_name,
+            c.company_address,
+            c.tel
         FROM internship_request r
         JOIN students s ON r.student_id = s.student_id
         LEFT JOIN status_list st ON r.status_code = st.status_code
+        LEFT JOIN companies c ON r.company_id = c.company_id -- เชื่อมตารางบริษัท
         WHERE r.request_id = '$req_id'";
+
 $result = $conn->query($sql);
 $data = $result->fetch_assoc();
+
+if (!$data) { echo "ไม่พบข้อมูลคำขอ"; exit(); }
 ?>
 
 <!DOCTYPE html>
@@ -84,8 +96,8 @@ $data = $result->fetch_assoc();
                             <span class="value"><?= $data['company_address']; ?></span>
                         </div>
                         <div class="detail-item">
-                            <span class="label">ผู้ติดต่อ:</span>
-                            <span class="value"><?= $data['contact_person']; ?></span>
+                            <span class="label">เบอร์โทร:</span>
+                            <span class="value"><?= $data['tel']; ?></span>
                         </div>
                         <div class="detail-item">
                             <span class="label">วันที่ฝึกงาน:</span>
@@ -124,13 +136,13 @@ $data = $result->fetch_assoc();
                             <textarea 
                             name="advisor_note" 
                             rows="6" 
-                            placeholder="พิมพ์ข้อความแจ้งนิสิตที่นี่..."
+                            placeholder=" "
                             <?php if ($_SESSION['role'] === 'admin') echo 'readonly style="background: #f5f5f5; color: #888; cursor: not-allowed;"'; ?>
                             ><?= $data['advisor_note']; ?></textarea>
                         </div>
 
                         <button type="submit" class="btn-submit">
-                            <i class="fa-solid fa-cloud-arrow-up"></i> บันทึกข้อมูล
+                            <i class="fa-solid fa-save"></i> บันทึกข้อมูล
                         </button>
                     </form>
                 </div>

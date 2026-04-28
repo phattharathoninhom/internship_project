@@ -19,6 +19,7 @@ $base_url = "/internship_project/";
                     <a href="<?php echo $base_url; ?>std2.php">นิสิตชั้นปีที่ 2</a>
                     <a href="<?php echo $base_url; ?>std3.php">นิสิตชั้นปีที่ 3</a>
                     <a href="<?php echo $base_url; ?>std4.php">นิสิตชั้นปีที่ 4</a>
+                    <a href="<?php echo $base_url; ?>dev.php">คณะผู้จัดทำ</a>
                 </div>
             </li>
             

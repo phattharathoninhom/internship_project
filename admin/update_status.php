@@ -84,6 +84,10 @@ $data = $result->fetch_assoc();
                             <span class="value"><?= $data['company_address']; ?></span>
                         </div>
                         <div class="detail-item">
+                            <span class="label">ผู้ติดต่อ:</span>
+                            <span class="value"><?= $data['contact_person']; ?></span>
+                        </div>
+                        <div class="detail-item">
                             <span class="label">วันที่ฝึกงาน:</span>
                             <span class="value">
                                 <?= date('d/m/Y', strtotime($data['start_date'])); ?> - 

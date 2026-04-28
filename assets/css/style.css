@@ -165,8 +165,8 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.5fr 1fr 0.8fr;
-    gap: 30px;
+    grid-template-columns: 1.5fr 1fr 0.7fr 1.2fr; 
+    gap: 25px;
     padding: 0 25px;
 }
 
@@ -180,6 +180,29 @@ body {
     font-size: 0.9em;
     margin: 5px 0;
     color: #ccc;
+}
+
+.footer-dev h4 {
+    color: #ff8c00; /* ใช้สีส้มตามสไตล์เดิมของนาย */
+    margin-bottom: 15px;
+    font-size: 1.1em;
+}
+
+.footer-dev p {
+    font-size: 0.85em;
+    margin: 6px 0 !important; /* เพิ่มช่องไฟระหว่างชื่อนิดนึง */
+    color: #ccc;
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.footer-dev i {
+    width: 18px;
+    color: #9e1a32; /* ไอคอนสีแดง มศว */
+    font-size: 0.8em;
+    margin-right: 10px;
+    text-align: center;
 }
 
 .footer-content h4 {
@@ -217,3 +240,4 @@ body {
     font-size: 0.8em;
     color: #888;
 }
+

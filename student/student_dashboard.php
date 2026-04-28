@@ -131,6 +131,6 @@ $result_req = $conn->query($sql_req);
             <?php endif; ?>
         </div>
     </div>
-
+<?php include '../includes/footer.php'; ?>
 </body>
 </html>

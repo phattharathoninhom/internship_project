@@ -154,7 +154,7 @@
                 <h3>Admission</h3>
                 <p class="aca-sub">รับสมัครนิสิตใหม่</p>
                 <p class="aca-desc">ข้อมูลการสมัครเข้าศึกษา คุณสมบัติ และขั้นตอนการสมัคร</p>
-                <div class="aca-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="aca-info-status"><i class="fas fa-info-circle"></i></div>
             </div>
 
             <div class="academic-card undergraduate">
@@ -162,7 +162,7 @@
                 <h3>ปริญญาตรี</h3>
                 <p class="aca-sub">Undergraduate Program</p>
                 <p class="aca-desc">หลักสูตรระดับปริญญาตรีทุกสาขาวิชา</p>
-                <div class="aca-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="aca-info-status"><i class="fas fa-info-circle"></i></div>
             </div>
 
             <div class="academic-card graduate">
@@ -170,7 +170,7 @@
                 <h3>บัณฑิตศึกษา</h3>
                 <p class="aca-sub">Graduate Program</p>
                 <p class="aca-desc">หลักสูตรระดับปริญญาโท และปริญญาเอก เพื่อความเชี่ยวชาญเฉพาะทาง</p>
-                <div class="aca-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="aca-info-status"><i class="fas fa-info-circle"></i></div>
             </div>
 
             <div class="academic-card lifelong">
@@ -178,7 +178,7 @@
                 <h3>Lifelong Learning</h3>
                 <p class="aca-sub">การเรียนรู้ตลอดชีวิต</p>
                 <p class="aca-desc">หลักสูตรระยะสั้น การพัฒนาทักษะ และการศึกษาต่อเนื่อง</p>
-                <div class="aca-arrow"><i class="fas fa-arrow-right"></i></div>
+                <div class="aca-info-status"><i class="fas fa-info-circle"></i></div>
             </div>
         </div>
     </div>

@@ -202,7 +202,7 @@ body {
 
 .hero-section {
     width: 100%;
-    height: 450px;
+    height: 550px;
     margin-top: 60px;
     overflow: hidden;
 }
@@ -455,9 +455,9 @@ body {
     opacity: 0.8;
 }
 
-.aca-arrow {
-    width: 40px;
-    height: 40px;
+.aca-info-status {
+    width: 30px;
+    height: 30px;
     background: white;
     color: #333;
     border-radius: 50%;
@@ -465,6 +465,7 @@ body {
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    transition: all 0.3s ease;
 }
 
 @media (max-width: 992px) {
@@ -486,11 +487,7 @@ body {
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
 }
 
-.aca-arrow {
-    transition: all 0.3s ease;
-}
-
-.academic-card:hover .aca-arrow {
+.academic-card:hover .aca-info-status {
     background-color: var(--swu-red);
     color: white;
     transform: scale(1.1);

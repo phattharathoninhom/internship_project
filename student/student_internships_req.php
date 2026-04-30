@@ -63,14 +63,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // บันทึกคำขอ (เพิ่มคอลัมน์ tel ลงใน INSERT ถ้าใน DB มีรองรับ)
     // หาก DB ยังไม่มีคอลัมน์ tel ใน internship_request ให้รัน: ALTER TABLE internship_request ADD tel VARCHAR(20);
     $sql = "INSERT INTO internship_request 
-            (student_id, company_id, tel, start_date, end_date, request_date, status_code) 
-            VALUES (?, ?, ?, ?, ?, ?, 1)";
+            (student_id, company_id, start_date, end_date, request_date, status_code) 
+            VALUES (?, ?, ?, ?, ?, 1)";
     
     if ($stmt = $conn->prepare($sql)) {
-        $stmt->bind_param("ssssss", 
+        // 2. แก้ไขการ bind_param ให้เหลือ 5 ตัวแปร (ลบ $tel ออก)
+        $stmt->bind_param("sssss", 
             $session_student_id, 
             $c_id, 
-            $tel,
             $start_date, 
             $end_date, 
             $request_date

@@ -56,7 +56,8 @@ $result = $conn->query($sql);
                         <th>รหัสนิสิต</th>
                         <th>ชื่อ-นามสกุล</th>
                         <th>บริษัทที่ฝึกงาน</th>
-                        <th>สถานะปัจจุบัน</th>
+                        <th>สถานะ</th>
+                        <th>ผู้ตรวจสอบ</th>
                         <th>รายละเอียด</th>
                     </tr>
                 </thead>
@@ -80,6 +81,9 @@ $result = $conn->query($sql);
                                 <span class="status-badge <?php echo $status_class; ?>">
                                     <?php echo $row['status_name']; ?>
                                 </span>
+                            </td>
+                            <td>
+                                <?php echo $row['editor'] ?? '-'; ?>
                             </td>
                             <td>
                                 <a href="update_status.php?id=<?php echo $row['request_id']; ?>" class="btn-detail">ดูข้อมูล</a>

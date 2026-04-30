@@ -13,9 +13,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_action'])) {
     $request_id = $_POST['request_id'];
     $new_status = $_POST['new_status'];
     $note = $_POST['advisor_note'];
+    // เพิ่มการดึงชื่อจาก Session (เหมือนในหน้า teacher_manage.php)
+    $editor = $_SESSION['name']; 
 
-    $stmt = $conn->prepare("UPDATE internship_request SET status_code = ?, advisor_note = ? WHERE request_id = ?");
-    $stmt->bind_param("isi", $new_status, $note, $request_id);
+    // เพิ่ม editor = ? ใน SQL และเพิ่ม "s" ใน bind_param
+    $stmt = $conn->prepare("UPDATE internship_request SET status_code = ?, advisor_note = ?, editor = ? WHERE request_id = ?");
+    $stmt->bind_param("issi", $new_status, $note, $editor, $request_id);
 
     if ($stmt->execute()) {
         $target = ($_SESSION['role'] === 'admin') ? 'admin_dashboard.php' : 'teacher_dashboard.php';

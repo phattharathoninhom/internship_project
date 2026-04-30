@@ -1,6 +1,6 @@
 DROP DATABASE IF EXISTS `internships`;
 
-CREATE DATABASE `internships` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE `internships` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 use internships;
 
@@ -8,7 +8,7 @@ CREATE TABLE `status_list` (
   `status_code` int(11) NOT NULL,
   `status_name` varchar(50) NOT NULL,
   PRIMARY KEY (`status_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `students` (
   `student_id` varchar(11) NOT NULL COMMENT 'รหัสนิสิต',
@@ -20,7 +20,7 @@ CREATE TABLE `students` (
   `password` varchar(100) DEFAULT '1234' COMMENT 'รหัสผ่าน',
   `profile_img` varchar(255) DEFAULT 'default.jpg' COMMENT 'ชื่อไฟล์รูปภาพนิสิต',
   PRIMARY KEY (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `staff` (
   `staff_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'รหัสลำดับ',
@@ -30,7 +30,7 @@ CREATE TABLE `staff` (
   `role` varchar(100) DEFAULT NULL COMMENT 'admin หรือ teacher',
   PRIMARY KEY (`staff_id`),
   UNIQUE KEY `staff_unique` (`username`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 CREATE TABLE `companies` (
   `company_id` varchar(6) NOT NULL,
@@ -56,8 +56,7 @@ CREATE TABLE `internship_request` (
   KEY `internship_request_status_list_FK` (`status_code`),
   CONSTRAINT `internship_request_status_list_FK` FOREIGN KEY (`status_code`) REFERENCES `status_list` (`status_code`) ON UPDATE CASCADE,
   CONSTRAINT `internship_request_students_FK` FOREIGN KEY (`student_id`) REFERENCES `students` (`student_id`) ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 INSERT INTO `status_list` (`status_code`, `status_name`) VALUES
 (1, 'รับเรื่องเข้าระบบ'),
 (2, 'อาจารย์ที่ปรึกษาอนุมัติ'),
